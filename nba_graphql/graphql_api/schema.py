@@ -13,7 +13,12 @@ class Query(graphene.ObjectType):
     all_players = graphene.List(
         PlayerDataType, first=graphene.Int(), skip=graphene.Int()
     )
-    player = graphene.Field(PlayerDataType, name=graphene.String(required=True), team=graphene.String(), season=graphene.Int())
+    player = graphene.Field(
+        PlayerDataType,
+        name=graphene.String(required=True),
+        team=graphene.String(),
+        season=graphene.Int(),
+    )
 
     def resolve_all_players(root, info, first=None, skip=None):
         players = PlayerData.objects.all()
@@ -27,11 +32,9 @@ class Query(graphene.ObjectType):
         query = PlayerData.objects.filter(name=name)
         if team:
             query = query.filter(team=team)
-        if season: 
+        if season:
             query = query.filter(season=season)
         return query.first()
 
 
 schema = graphene.Schema(query=Query)
-
-
