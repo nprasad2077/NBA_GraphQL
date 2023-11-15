@@ -6,5 +6,5 @@ load_dotenv()
 var1 = os.getenv('var1')
 
 
-
+print(var1)
 
