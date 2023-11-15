@@ -33,6 +33,10 @@ class PlayerData(models.Model):
     PTS = models.DecimalField(max_digits=5, decimal_places=2, null=True)
     team = models.CharField(max_length=30, default="")
     season = models.IntegerField(null=True)
+    
+    class Meta:
+        db_table = 'nba_data_playerdata'
+        managed = False
 
     def __str__(self):
         return self.name
