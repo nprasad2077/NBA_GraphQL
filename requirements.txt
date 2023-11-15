@@ -6,6 +6,7 @@ graphene-django==3.1.5
 graphql-core==3.2.3
 graphql-relay==3.2.0
 promise==2.3
+psycopg2-binary==2.9.9
 python-dotenv==1.0.0
 six==1.16.0
 sqlparse==0.4.4
