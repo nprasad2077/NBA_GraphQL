@@ -11,17 +11,17 @@ class PlayerDataType(DjangoObjectType):
 
 class Query(graphene.ObjectType):
     all_players = graphene.List(
-        PlayerDataType, first=graphene.Int(), skip=graphene.Int()
+        PlayerDataType, season=graphene.Int(required=True), first=graphene.Int(), skip=graphene.Int()
     )
-    player = graphene.Field(
+    player = graphene.List(
         PlayerDataType,
         name=graphene.String(required=True),
         team=graphene.String(),
         season=graphene.Int(),
     )
 
-    def resolve_all_players(root, info, first=None, skip=None):
-        players = PlayerData.objects.all()
+    def resolve_all_players(root, info, season, first=None, skip=None):
+        players = PlayerData.objects.filter(season=season)
         if first:
             players = players[:first]
         if skip:
@@ -32,9 +32,7 @@ class Query(graphene.ObjectType):
         query = PlayerData.objects.filter(name=name)
         if team:
             query = query.filter(team=team)
-        if season:
-            query = query.filter(season=season)
-        return query.first()
+        return query
 
 
 schema = graphene.Schema(query=Query)
