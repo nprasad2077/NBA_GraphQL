@@ -33,6 +33,7 @@ class Query(graphene.ObjectType):
         season=graphene.Int(required=True),
         first=graphene.Int(),
         skip=graphene.Int(),
+        team=graphene.String()
     )
     player = graphene.List(
         PlayerDataType,
@@ -55,8 +56,10 @@ class Query(graphene.ObjectType):
             query = query.filter(season=season)
         return query
 
-    def resolve_all_players(root, info, season, first=None, skip=None):
+    def resolve_all_players(root, info, season, first=None, skip=None, team=None):
         players = PlayerData.objects.filter(season=season)
+        if team: 
+            players = players.filter(team=team)
         if first:
             players = players[:first]
         if skip:
