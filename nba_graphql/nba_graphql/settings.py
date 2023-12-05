@@ -11,6 +11,13 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+psql_user = os.getenv('PSQL_USER')
+psql_pass = os.getenv('PSQL_PASS')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -75,8 +82,12 @@ WSGI_APPLICATION = 'nba_graphql.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'nba_graphql',
+        'USER': psql_user,
+        'PASSWORD': psql_pass,
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
