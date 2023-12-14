@@ -2,5 +2,6 @@
     "tabby.api.endpoint": "http://localhost:8080/",
     "tabby.inlineCompletion.triggerMode": "manual",
     "tabby.keybindings": "tabby-style",
-    "tabby.usage.anonymousUsageTracking": true
+    "tabby.usage.anonymousUsageTracking": true,
+    "python.REPL.enableREPLSmartSend": false
 }
