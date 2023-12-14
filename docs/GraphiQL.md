@@ -21,7 +21,7 @@ query MyQuery2 {
     AST
     STL
     age
-    effectFgPercent
+    FgPercent
     threeFg
     twoFg
     ftPercent

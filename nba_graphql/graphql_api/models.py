@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 class PlayerData(models.Model):
+    id = models.AutoField(primary_key=True)
     player_name = models.CharField(max_length=255)
     position = models.CharField(max_length=30)
     age = models.IntegerField()
@@ -17,6 +18,7 @@ class PlayerData(models.Model):
     two_fg = models.DecimalField(max_digits=3, decimal_places=1, null=True)
     two_attempts = models.DecimalField(max_digits=3, decimal_places=1, null=True)
     two_percent = models.DecimalField(max_digits=4, decimal_places=3, null=True)
+    effect_fg_percent = models.DecimalField(max_digits=4, decimal_places=3, null=True)
     ft = models.DecimalField(max_digits=3, decimal_places=1, null=True)
     ft_attempts = models.DecimalField(max_digits=3, decimal_places=1, null=True)
     ft_percent = models.DecimalField(max_digits=4, decimal_places=3, null=True)
@@ -31,7 +33,7 @@ class PlayerData(models.Model):
     points = models.DecimalField(max_digits=3, decimal_places=1, null=True)
     team = models.CharField(max_length=30, default='')
     season = models.IntegerField(null=True)
-    player_id = models.CharField(max_length=255, primary_key=True)
+    player_id = models.CharField(max_length=255)
     
     def __str__(self):
         return self.player_name

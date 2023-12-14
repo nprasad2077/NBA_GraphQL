@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'graphql_api',
+    'graphql_api.apps.GraphqlApiConfig',
 ]
 
 MIDDLEWARE = [
