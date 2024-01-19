@@ -32,7 +32,7 @@ class PlayerData(models.Model):
     points = models.DecimalField(max_digits=3, decimal_places=1, null=True, blank=True)
     team = models.CharField(max_length=30, default='')
     season = models.IntegerField(null=True)
-    player_id = models.CharField(max_length=255, primary_key=True)
+    player_id = models.CharField(max_length=255)
     
     def __str__(self):
         return self.player_name
