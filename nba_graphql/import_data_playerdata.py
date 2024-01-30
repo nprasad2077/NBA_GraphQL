@@ -14,7 +14,7 @@ print(f"season is {season_int}")
 
 
 def run():
-    with open("../data/2021_season_per_game.csv", "r") as file:
+    with open("../data/per_game/2023_season_per_game.csv", "r") as file:
         reader = csv.DictReader(file)
         for row in reader:
             player = PlayerData()
