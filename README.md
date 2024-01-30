@@ -25,3 +25,9 @@ For example, Austin Rivers has a unique ID of "riverau01". Donovan Mitchell has 
 ![retroNBAData](images/export2.png)
 
 ![Behold the cosmic fusion of sports and data! A basketball transforming into a vibrant database, a digital dream of NBA stats. 🌌🏀💾](images/DALL·E3.png)
+
+## Enter Virtual Environment
+
+```bash
+source venv/bin/activate
+```
