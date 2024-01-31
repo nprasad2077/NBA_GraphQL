@@ -14,7 +14,7 @@ print(f"season is {season_int}")
 
 
 def run():
-    with open("../data/per_game/2023_season_per_game.csv", "r") as file:
+    with open("../data/per_game/1993_season_per_game.csv", "r") as file:
         reader = csv.DictReader(file)
         for row in reader:
             player = PlayerData()
@@ -28,7 +28,7 @@ def run():
             player.minutes_pg = row["MP"] if row["MP"] else None
             player.field_goals = row["FG"] if row["FG"] else None
             player.field_attempts = row["FGA"] if row["FGA"] else None
-            player.field_percent = row["FG%"] if row["FG%"] else None
+            player.field_percent = row["FG%"] if row["FG%"] else None 
             player.three_fg = row["3P"] if row["3P"] else None
             player.three_attempts = row["3PA"] if row["3PA"] else None
             player.three_percent = row["3P%"] if row["3P%"] else None
