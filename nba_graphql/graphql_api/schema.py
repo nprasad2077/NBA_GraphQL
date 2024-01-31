@@ -1,76 +1,81 @@
 import graphene
-from graphene_django import DjangoObjectType
-from .models import PlayerData, PlayerTotalsData
+from graphene_django.types import DjangoObjectType
+from .models import PlayerData
 
 
-class PlayerDataType(DjangoObjectType):
+class PlayerType(DjangoObjectType):
     class Meta:
         model = PlayerData
-        fields = (
-            'name', 'age', 'games', 'games_started', 'minutes_pg', 'field_goals',
-            'field_attempts', 'field_percent', 'three_fg', 'three_attempts',
-            'three_percent', 'two_fg', 'two_attempts', 'two_percent',
-            'effect_fg_percent', 'ft', 'fta', 'ft_percent', 'ORB', 'DRB',
-            'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'team', 'season'
-        )
-
-class PlayerTotalsDataType(DjangoObjectType):
-    class Meta:
-        model = PlayerTotalsData
-        fields = (
-            'player_name', 'age', 'games', 'games_started', 'minutes_played',
-            'field_goals', 'field_attempts', 'field_percent', 'three_fg',
-            'three_attempts', 'three_percent', 'two_fg', 'two_attempts',
-            'two_percent', 'effect_fg_percent', 'ft', 'fta', 'ft_percent',
-            'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'team', 'season'
-        )
-
 
 
 class Query(graphene.ObjectType):
-    all_players = graphene.List(
-        PlayerDataType,
+    # Search for all players in a season. All paramaters available for viewing, just specify season.
+    players_by_season = graphene.List(
+        PlayerType,
         season=graphene.Int(required=True),
-        first=graphene.Int(),
-        skip=graphene.Int(),
-        team=graphene.String()
+        team=graphene.String(),
+        ordering=graphene.String(),
+        limit=graphene.Int(),
     )
-    player = graphene.List(
-        PlayerDataType,
+
+    # Search for player by Name. You may further refine your results with optional season and team parameters after specifying player name.
+    player_by_name = graphene.List(
+        PlayerType,
         name=graphene.String(required=True),
-        team=graphene.String(),
         season=graphene.Int(),
-    )
-    player_totals = graphene.List(
-        PlayerTotalsDataType,
-        player_name=graphene.String(required=True),
         team=graphene.String(),
-        season=graphene.Int(),
+        ordering=graphene.String(),
     )
-    
-    def resolve_player_totals(root, info, player_name, team=None, season=None):
-        query = PlayerTotalsData.objects.filter(player_name=player_name)
+
+    # Search for team roster by abbreviation. Filter additionally by season.
+    players_by_team = graphene.List(
+        PlayerType,
+        team=graphene.String(required=True),
+        season=graphene.Int(),
+        position=graphene.String(),
+        ordering=graphene.String(),
+    )
+
+    def resolve_players_by_season(
+        self, info, season, team=None, ordering=None, limit=None, **kwargs
+    ):
+        q = PlayerData.objects.filter(season=season)
+        
         if team:
-            query = query.filter(team=team)
+            q = q.filter(team=team)
+
+        if ordering:
+            q = q.order_by(ordering)
+
+        if limit:
+            q = q[:limit]
+
+        return q
+
+    def resolve_player_by_name(self, info, name, season=None, team=None, ordering=None, **kwargs):
+        search = PlayerData.objects.filter(player_name=name)
+
         if season:
-            query = query.filter(season=season)
-        return query
+            search = search.filter(season=season)
 
-    def resolve_all_players(root, info, season, first=None, skip=None, team=None):
-        players = PlayerData.objects.filter(season=season)
-        if team: 
-            players = players.filter(team=team)
-        if first:
-            players = players[:first]
-        if skip:
-            players = players[skip:]
-        return players
-
-    def resolve_player(root, info, name, team=None, season=None):
-        query = PlayerData.objects.filter(name=name)
         if team:
-            query = query.filter(team=team)
-        return query
+            search = search.filter(team=team)
+        
+        if ordering:
+            search = search.order_by(ordering)
 
+        return search
 
-schema = graphene.Schema(query=Query)
+    def resolve_players_by_team(self, info, team, season=None, position=None, ordering=None, **kwargs):
+        p = PlayerData.objects.filter(team=team)
+
+        if season:
+            p = p.filter(season=season)
+
+        if position:
+            p = p.filter(position=position)
+        
+        if ordering:
+            p = p.order_by(ordering)
+
+        return p
