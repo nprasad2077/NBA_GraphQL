@@ -12,6 +12,9 @@ class Query(graphene.ObjectType):
     
     # Search for player by Name. You may further refine your results with optional season and team parameters after specifying player name.
     player_by_name = graphene.List(PlayerType, name=graphene.String(required=True), season=graphene.Int(), team=graphene.String())
+    
+    # Search for team roster by abbreviation. Filter additionally by season.
+    players_by_team = graphene.List(PlayerType, team=graphene.String(required=True), season=graphene.Int(), position=graphene.String())
 
     
     def resolve_players_by_season(self, info, season, **kwargs):
@@ -27,3 +30,14 @@ class Query(graphene.ObjectType):
             search = search.filter(team=team)
         
         return search
+    
+    def resolve_players_by_team(self, info, team, season=None, position=None, **kwargs):
+        p = PlayerData.objects.filter(team=team)
+        
+        if season:
+            p = p.filter(season=season)
+            
+        if position:
+            p = p.filter(position=position)
+        
+        return p
