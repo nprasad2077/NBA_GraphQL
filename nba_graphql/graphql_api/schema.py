@@ -25,6 +25,7 @@ class Query(graphene.ObjectType):
         season=graphene.Int(),
         team=graphene.String(),
         ordering=graphene.String(),
+        limit=graphene.Int(),
     )
 
     # Search for team roster by abbreviation. Filter additionally by season.
@@ -52,7 +53,7 @@ class Query(graphene.ObjectType):
 
         return q
 
-    def resolve_player_by_name(self, info, name, season=None, team=None, ordering=None, **kwargs):
+    def resolve_player_by_name(self, info, name, season=None, team=None, ordering=None, limit=None, **kwargs):
         search = PlayerData.objects.filter(player_name=name)
 
         if season:
@@ -63,6 +64,9 @@ class Query(graphene.ObjectType):
         
         if ordering:
             search = search.order_by(ordering)
+            
+        if limit:
+            search = search[:limit]
 
         return search
 
