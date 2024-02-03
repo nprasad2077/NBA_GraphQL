@@ -125,23 +125,55 @@ class PlayerDataAdvanced(models.Model):
     games = models.IntegerField(null=True, blank=True)
     minutes_played = models.IntegerField(null=True, blank=True)
     per = models.DecimalField(max_digits=6, decimal_places=1, null=True, blank=True)
-    ts_percent = models.DecimalField(max_digits=6, decimal_places=3, null=True, blank=True)
-    three_p_ar = models.DecimalField(max_digits=6, decimal_places=3, null=True, blank=True)
+    ts_percent = models.DecimalField(
+        max_digits=6, decimal_places=3, null=True, blank=True
+    )
+    three_p_ar = models.DecimalField(
+        max_digits=6, decimal_places=3, null=True, blank=True
+    )
     ftr = models.DecimalField(max_digits=6, decimal_places=3, null=True, blank=True)
-    offensive_rb_percent = models.DecimalField(max_digits=6, decimal_places=3, null=True, blank=True)
-    defensive_rb_percent = models.DecimalField(max_digits=6, decimal_places=3, null=True, blank=True)
-    total_rb_percent = models.DecimalField(max_digits=6, decimal_places=3, null=True, blank=True)
-    assist_percent = models.DecimalField(max_digits=6, decimal_places=3, null=True, blank=True)
-    steal_percent = models.DecimalField(max_digits=6, decimal_places=3, null=True, blank=True)
-    block_percent = models.DecimalField(max_digits=6, decimal_places=3, null=True, blank=True)
-    turnover_percent = models.DecimalField(max_digits=6, decimal_places=3, null=True, blank=True)
-    usage_percent = models.DecimalField(max_digits=6, decimal_places=3, null=True, blank=True)
-    offensive_ws = models.DecimalField(max_digits=5, decimal_places=1, null=True, blank=True)
-    defensive_ws = models.DecimalField(max_digits=5, decimal_places=1, null=True, blank=True)
-    win_shares = models.DecimalField(max_digits=5, decimal_places=1, null=True, blank=True)
-    win_shares_per = models.DecimalField(max_digits=7, decimal_places=3, null=True, blank=True)
-    offensive_box = models.DecimalField(max_digits=7, decimal_places=1, null=True, blank=True)
-    defensive_box = models.DecimalField(max_digits=7, decimal_places=1, null=True, blank=True)
+    offensive_rb_percent = models.DecimalField(
+        max_digits=6, decimal_places=3, null=True, blank=True
+    )
+    defensive_rb_percent = models.DecimalField(
+        max_digits=6, decimal_places=3, null=True, blank=True
+    )
+    total_rb_percent = models.DecimalField(
+        max_digits=6, decimal_places=3, null=True, blank=True
+    )
+    assist_percent = models.DecimalField(
+        max_digits=6, decimal_places=3, null=True, blank=True
+    )
+    steal_percent = models.DecimalField(
+        max_digits=6, decimal_places=3, null=True, blank=True
+    )
+    block_percent = models.DecimalField(
+        max_digits=6, decimal_places=3, null=True, blank=True
+    )
+    turnover_percent = models.DecimalField(
+        max_digits=6, decimal_places=3, null=True, blank=True
+    )
+    usage_percent = models.DecimalField(
+        max_digits=6, decimal_places=3, null=True, blank=True
+    )
+    offensive_ws = models.DecimalField(
+        max_digits=5, decimal_places=1, null=True, blank=True
+    )
+    defensive_ws = models.DecimalField(
+        max_digits=5, decimal_places=1, null=True, blank=True
+    )
+    win_shares = models.DecimalField(
+        max_digits=5, decimal_places=1, null=True, blank=True
+    )
+    win_shares_per = models.DecimalField(
+        max_digits=7, decimal_places=3, null=True, blank=True
+    )
+    offensive_box = models.DecimalField(
+        max_digits=7, decimal_places=1, null=True, blank=True
+    )
+    defensive_box = models.DecimalField(
+        max_digits=7, decimal_places=1, null=True, blank=True
+    )
     box = models.DecimalField(max_digits=7, decimal_places=1, null=True, blank=True)
     vorp = models.DecimalField(max_digits=6, decimal_places=1, null=True, blank=True)
     team = models.CharField(max_length=30, default="")
