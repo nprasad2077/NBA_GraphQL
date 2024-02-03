@@ -56,6 +56,17 @@ class Query(graphene.ObjectType):
         first=graphene.Int(),
         limit=graphene.Int(),
     )
+    
+    # Search for player advanced data
+    player_advanced_by_name = graphene.List(
+        PlayerAdvancedType,
+        name=graphene.String(required=True),
+        season=graphene.Int(),
+        team=graphene.String(),
+        ordering=graphene.String(),
+        first=graphene.Int(),
+        limit=graphene.Int(),
+    )
 
     def resolve_players_by_season(
         self, info, season, team=None, ordering=None, limit=None, first=None, **kwargs
@@ -126,3 +137,25 @@ class Query(graphene.ObjectType):
             t = t[first:limit]
             
         return t
+    
+    def resolve_player_advanced_by_name(self, info, name, season=None, team=None, ordering=None, first=None, limit=None, **kwargs):
+        adv = PlayerDataAdvanced.objects.filter(player_name=name)
+        
+        if season:
+            adv = adv.filter(season=season)
+        
+        if team:
+            adv = adv.filter(team=team)
+        
+        if ordering:
+            adv = adv.order_by(ordering)
+        
+        if first:
+            adv = adv[first:limit]
+        
+        if limit:
+            adv = adv[first:limit]
+        
+        return adv
+            
+            
