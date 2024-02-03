@@ -15,6 +15,7 @@ class Query(graphene.ObjectType):
         season=graphene.Int(required=True),
         team=graphene.String(),
         ordering=graphene.String(),
+        first=graphene.Int(),
         limit=graphene.Int(),
     )
 
@@ -38,7 +39,7 @@ class Query(graphene.ObjectType):
     )
 
     def resolve_players_by_season(
-        self, info, season, team=None, ordering=None, limit=None, **kwargs
+        self, info, season, team=None, ordering=None, limit=None, first=None, **kwargs
     ):
         q = PlayerData.objects.filter(season=season)
         
@@ -47,9 +48,12 @@ class Query(graphene.ObjectType):
 
         if ordering:
             q = q.order_by(ordering)
+        
+        if first:
+            q = q[first:limit]
 
         if limit:
-            q = q[:limit]
+            q = q[first:limit]
 
         return q
 

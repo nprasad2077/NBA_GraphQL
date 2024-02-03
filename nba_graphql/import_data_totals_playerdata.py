@@ -5,7 +5,16 @@ import requests
 from bs4 import BeautifulSoup
 
 # Get the website content
-url = "https://www.basketball-reference.com/leagues/NBA_2023_totals.html"
+season_input = input('What season? ')
+try:
+    season_int = int(season_input)
+except ValueError: 
+    print('Invalid Value')
+    exit(1)
+
+url = "https://www.basketball-reference.com/leagues/NBA_" + str(season_int) + "_totals.html"
+print(url)
+url_print = 'https://www.basketball-reference.com/leagues/NBA_2023_totals.html'
 response = requests.get(url)
 soup = BeautifulSoup(response.content, "html.parser")
 
@@ -34,10 +43,6 @@ print(header_values, file=open("headers.txt", "w"))
 
 rows = table.find_all("tr")
 
-# Define Season
-
-season = 2023
-
 data_rows = []
 
 for row in rows:
@@ -49,16 +54,16 @@ for row in rows:
     if player_id_col:
         player_id = player_id_col["data-append-csv"]
         cols.append(player_id)
-        cols.append(season)
+        cols.append(season_int)
         data_rows.append(cols)
 
 
 # Write to CSV
 
-with open("players.csv", "w", newline="") as file:
+with open(f"../data/totals/{season_input}_player_totals.csv", "w", newline="") as file:
     writer = csv.writer(file)
     writer.writerow(header_values) # write headers
     writer.writerows(data_rows)
 
 
-
+print('success')
