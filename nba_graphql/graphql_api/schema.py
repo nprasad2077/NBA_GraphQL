@@ -1,6 +1,6 @@
 import graphene
 from graphene_django.types import DjangoObjectType
-from .models import PlayerData, PlayerDataTotals, PlayerDataAdvanced
+from .models import PlayerData, PlayerDataTotals, PlayerDataAdvanced, TeamData
 
 
 class PlayerType(DjangoObjectType):
@@ -14,6 +14,10 @@ class PlayerTotalsType(DjangoObjectType):
 class PlayerAdvancedType(DjangoObjectType):
     class Meta:
         model = PlayerDataAdvanced
+        
+class TeamDataType(DjangoObjectType):
+    class Meta:
+        model = TeamData
 
 
 class Query(graphene.ObjectType):
@@ -67,6 +71,16 @@ class Query(graphene.ObjectType):
         first=graphene.Int(),
         limit=graphene.Int(),
     )
+    
+    # Search for Team information
+    team_by_name = graphene.List(
+        TeamDataType,
+        abbr=graphene.String(required=True),
+        season=graphene.Int(),
+        ordering=graphene.String(),
+        first=graphene.Int(),
+        limit=graphene.Int(),
+     )
 
     def resolve_players_by_season(
         self, info, season, team=None, ordering=None, limit=None, first=None, **kwargs
@@ -158,4 +172,19 @@ class Query(graphene.ObjectType):
         
         return adv
             
+    def resolve_team_by_name(self, info, abbr, season=None, ordering=None, first=None, limit=None, **kwargs):
+        t = TeamData.objects.filter(team_abbr=abbr)
+        
+        if season:
+            t = t.filter(season=season)
             
+        if ordering:
+            t = t.order_by(ordering)
+        
+        if first:
+            t = t[first:limit]
+        
+        if limit:
+            t = t[first:limit]
+        
+        
