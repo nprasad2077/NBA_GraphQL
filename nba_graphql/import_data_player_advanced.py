@@ -60,3 +60,55 @@ with open(f'../data/advanced/{season_int}_player_advanced_data.csv', 'w', newlin
     writer.writerows(data_rows)
 
 print('Write to CSV success!')
+
+# Write to Database
+
+def run():
+    with open(f'../data/advanced/{season_int}_player_advanced_data.csv', 'r') as file:
+        reader = csv.DictReader(file)
+        
+        for row in reader:
+            player = PlayerDataAdvanced()
+            player.player_name = row['Player']
+            player.position = row['Pos']
+            
+            # Data with check
+            player.age = row['Age'] if row['Age'] else None
+            player.games = row['G'] if row['G'] else None
+            player.minutes_played = row['MP'] if row['MP'] else None
+            player.per = row['PER'] if row['PER'] else None
+            player.ts_percent = row['TS%'] if row['TS%'] else None
+            player.three_p_ar = row['3PAr'] if row['3PAr'] else None
+            player.ftr = row['FTr'] if row['FTr'] else None
+            player.offensive_rb_percent = row['ORB%'] if row['ORB%'] else None
+            player.defensive_rb_percent = row['DRB%'] if row['DRB%'] else None
+            player.total_rb_percent = row['TRB%'] if row['TRB%'] else None
+            player.assist_percent = row['AST%'] if row['AST%'] else None
+            player.steal_percent = row['STL%'] if row['STL%'] else None
+            player.block_percent = row['BLK%'] if row['BLK%'] else None
+            player.turnover_percent = row['TOV%'] if row['TOV%'] else None
+            player.usage_percent = row['USG%'] if row['USG%'] else None
+            player.offensive_ws = row['OWS'] if row['OWS'] else None
+            player.defensive_ws = row['DWS'] if row['DWS'] else None
+            player.win_shares = row['WS'] if row['WS'] else None
+            player.win_shares_per = row['WS/48'] if row['WS/48'] else None
+            player.offensive_box = row['OBPM'] if row['OBPM'] else None
+            player.defensive_box = row['DBPM'] if row['DBPM'] else None
+            player.box = row['BPM'] if row['BPM'] else None
+            player.vorp = row['VORP'] if row['VORP'] else None
+            
+            
+            
+            player.team = row['Tm'] if row['Tm'] else None
+            player.season = season_int
+            player.player_id = row['Player-additional']
+            
+            try:
+                player.save()
+            except Exception as e:
+                print(f'Row data: {row}')
+                print(f'Could not create record {e}')
+                
+run()
+
+print('Save to player advanced DB Success!')
