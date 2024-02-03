@@ -73,3 +73,38 @@ class PlayerDataTotals(models.Model):
     
     def __str__(self):
         return self.player_name
+    
+
+class PlayerDataAdvanced(models.Model):
+    player_name = models.CharField(max_length=255)
+    position = models.CharField(max_length=30, default='')
+    age = models.IntegerField(null=False)
+    games = models.IntegerField(null=False, blank=True)
+    minutes_played = models.IntegerField(null=True, blank=True)
+    per = models.DecimalField(max_digits=4, decimal_places=1, null=True, blank=True)
+    ts_percent = models.DecimalField(max_digits=4, decimal_places=3, null=True, blank=True)
+    three_p_ar = models.DecimalField(max_digits=4, decimal_places=3, null=True, blank=True)
+    ftr = models.DecimalField(max_digits=4, decimal_places=3, null=True, blank=True)
+    offensive_rb_percent = models.DecimalField(max_digits=4, decimal_places=3, null=True, blank=True)
+    defensive_rb_percent = models.DecimalField(max_digits=4, decimal_places=3, null=True, blank=True)
+    total_rb_percent = models.DecimalField(max_digits=4, decimal_places=3, null=True, blank=True)
+    assist_percent = models.DecimalField(max_digits=4, decimal_places=3, null=True, blank=True)
+    steal_percent = models.DecimalField(max_digits=4, decimal_places=3, null=True, blank=True)
+    block_percent = models.DecimalField(max_digits=4, decimal_places=3, null=True, blank=True)
+    turnover_percent = models.DecimalField(max_digits=4, decimal_places=3, null=True, blank=True)
+    usage_percent = models.DecimalField(max_digits=4, decimal_places=3, null=True, blank=True)
+    offensive_ws = models.DecimalField(max_digits=4, decimal_places=1, null=True, blank=True)
+    defeensive_ws = models.DecimalField(max_digits=4, decimal_places=1, null=True, blank=True)
+    win_shares = models.DecimalField(max_digits=4, decimal_places=1, null=True, blank=True)
+    win_shares_per = models.DecimalField(max_digits=4, decimal_places=3, null=True, blank=True)
+    offensive_box = models.DecimalField(max_digits=4, decimal_places=1, null=True, blank=True)
+    defensive_box = models.DecimalField(max_digits=4, decimal_places=1, null=True, blank=True)
+    box = models.DecimalField(max_digits=4, decimal_places=1, null=True, blank=True)
+    vorp = models.DecimalField(max_digits=3, decimal_places=1, null=True, blank=True)
+    
+    team = models.CharField(max_length=30, default='')
+    season = models.IntegerField(null=True)
+    player_id = models.CharField(max_length=255)
+    
+    def __str__(self):
+        return self.player_name
