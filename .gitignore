@@ -160,7 +160,3 @@ cython_debug/
 #.idea/
 
 
-#  Work Files
-/data
-./data
-./data/*
