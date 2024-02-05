@@ -81,6 +81,38 @@ class Query(graphene.ObjectType):
         first=graphene.Int(),
         limit=graphene.Int(),
      )
+    
+    player_per_game_ = graphene.List(
+        PlayerType,
+        name=graphene.String(),
+        position=graphene.String(),
+        age=graphene.Int(),
+        games=graphene.Int(),
+        games_started=graphene.Int(),
+        minutes_pg = graphene.Decimal(),
+        field_goals = graphene.Decimal(),
+        field_attempts = graphene.Decimal(),
+        field_percent = graphene.Decimal(),
+        three_fg=graphene.Decimal(),
+        three_attempts=graphene.Decimal(),
+        three_percent=graphene.Decimal(),
+        two_fg=graphene.Decimal(),
+        two_attempts=graphene.Decimal(),
+        two_percent=graphene.Decimal(),
+        effect_fg_percent=graphene.Decimal(),
+        ft=graphene.Decimal(),
+        ft_attempts=graphene.Decimal(),
+        orb=graphene.Decimal(),
+        drb=graphene.Decimal()
+        trb=graphene.Decimal(),
+        assists=graphene.Decimal(),
+        steals=graphene.Decimal(),
+        turnovers=graphene.Decimal()
+        personal_fouls=graphene.Decimal(),
+        points=graphene.Decimal(),
+        team=graphene.String(),
+        player_id=graphene.String()
+    )
 
     def resolve_players_by_season(
         self, info, season, team=None, ordering=None, limit=None, first=None, **kwargs
