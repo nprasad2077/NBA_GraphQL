@@ -103,11 +103,11 @@ class Query(graphene.ObjectType):
         ft=graphene.Decimal(),
         ft_attempts=graphene.Decimal(),
         orb=graphene.Decimal(),
-        drb=graphene.Decimal()
+        drb=graphene.Decimal(),
         trb=graphene.Decimal(),
         assists=graphene.Decimal(),
         steals=graphene.Decimal(),
-        turnovers=graphene.Decimal()
+        turnovers=graphene.Decimal(),
         personal_fouls=graphene.Decimal(),
         points=graphene.Decimal(),
         team=graphene.String(),
