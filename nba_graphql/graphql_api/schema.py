@@ -127,6 +127,16 @@ class Query(graphene.ObjectType):
         player_id=graphene.String(),
         id=graphene.Int(),
     )
+    
+    player_advanced = graphene.List(
+        PlayerAdvancedType,
+        name=graphene.String(),
+        position=graphene.String(),
+        team=graphene.String(),
+        season=graphene.Int(),
+        player_id=graphene.String(),
+        id=graphene.Int(),
+    )
 
     def resolve_players_by_season(
         self, info, season, team=None, ordering=None, limit=None, first=None, **kwargs
@@ -289,6 +299,34 @@ class Query(graphene.ObjectType):
             p = p.filter(id=id)
         
         return p
+    
+    def resolve_player_advanced(self, info, name=None, season=None, player_id=None, team=None, position=None, id=None, **kwargs):
+        
+        if not name and not player_id:
+            raise Exception('Either name or player_id must be provided.')
+        
+        p = PlayerDataAdvanced.objects.all()
+        
+        if name:
+            p = p.filter(player_name=name)
+        
+        if season:
+            p = p.filter(season=season)
+        
+        if player_id:
+            p = p.filter(player_id=player_id)
+        
+        if team:
+            p = p.filter(team=team)
+        
+        if position:
+            p = p.filter(position=position)
+        
+        if id:
+            p = p.filter(id=id)
+        
+        return p
+        
     
     
         
