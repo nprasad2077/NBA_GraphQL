@@ -182,3 +182,30 @@ class PlayerDataAdvanced(models.Model):
 
     def __str__(self):
         return self.player_name
+
+
+
+class TeamData(models.Model):
+    team_name = models.CharField(max_length=50, null=False, blank=False)
+    team_abbr = models.CharField(max_length=50, null=False, blank=False)
+    season = models.IntegerField()
+    league = models.CharField(max_length=10, blank=True)
+    wins = models.IntegerField()
+    loss = models.IntegerField()
+    win_loss_percent = models.DecimalField(max_digits=4, decimal_places=3, null=True, blank=True)
+    finish = models.TextField()
+    srs = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    pace = models.DecimalField(max_digits=5, decimal_places=1, null=True, blank=True)
+    rel_pace = models.DecimalField(max_digits=5, decimal_places=1, null=True, blank=True)
+    ortg = models.DecimalField(max_digits=5, decimal_places=1, null=True, blank=True)
+    rel_ortg = models.DecimalField(max_digits=5, decimal_places=1, null=True, blank=True)
+    drtg = models.DecimalField(max_digits=5, decimal_places=1, null=True, blank=True)
+    rel_drtg = models.DecimalField(max_digits=5, decimal_places=1, null=True, blank=True)
+    playoffs = models.TextField()
+    coaches = models.TextField()
+    top_ws = models.TextField()
+    
+    def __str__(self):
+        return self.team_name
+    
+    
