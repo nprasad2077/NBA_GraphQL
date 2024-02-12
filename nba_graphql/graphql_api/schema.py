@@ -392,8 +392,40 @@ class Query(graphene.ObjectType):
             t = t[first:limit]
         
         return t
-            
+
+
+    def resolve_player_advanced_all(self, info,  name=None, season=None, player_id=None, team=None, position=None, id=None, ordering=None, first=None, limit=None, **kwargs ):
         
+        a = PlayerDataAdvanced.objects.all()
+        
+        if name:
+            a = a.filter(player_name=name)
+        
+        if season:
+            a = a.filter(season=season)
+        
+        if player_id:
+            a = a.filter(player_id=player_id)
+            
+        if team:
+            a = a.filter(team=team)
+        
+        if position:
+            a = a.filter(position=position)
+        
+        if id:
+            a = a.filter(id=id)
+        
+        if ordering:
+            a = a.order_by(ordering)
+            
+        if first:
+            a = a[first:limit]
+            
+        if limit:
+            a = a[first:limit]
+            
+        return a
     
     
         
