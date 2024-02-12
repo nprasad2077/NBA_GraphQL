@@ -38,6 +38,8 @@ class Query(graphene.ObjectType):
         season=graphene.Int(),
         position=graphene.String(),
         ordering=graphene.String(),
+        first=graphene.Int(),
+        limit=graphene.Int(),
     )
     
     # Search for player totals data
@@ -116,6 +118,9 @@ class Query(graphene.ObjectType):
         season=graphene.Int(),
         player_id=graphene.String(),
         id=graphene.Int(),
+        ordering=graphene.String(),
+        first=graphene.Int(),
+        limit=graphene.Int(),
     )
     
     player_advanced = graphene.List(
@@ -126,6 +131,9 @@ class Query(graphene.ObjectType):
         season=graphene.Int(),
         player_id=graphene.String(),
         id=graphene.Int(),
+        ordering=graphene.String(),
+        first=graphene.Int(),
+        limit=graphene.Int(),
     )
 
     def resolve_per_game_by_season(
@@ -216,10 +224,10 @@ class Query(graphene.ObjectType):
         if limit:
             t = t[first:limit]
             
-    def resolve_player_per_game(self, info, name=None, season=None, player_id=None, team=None, position=None, age=None, id=None, **kwargs ):
+    def resolve_player_per_game(self, info, name=None, season=None, player_id=None, team=None, position=None, age=None, id=None, ordering=None, first=None, limit=None, **kwargs ):
         
-        if not name and not player_id:
-            raise Exception('Either name or player_id must be provided')
+        if not name and not player_id and not id and not team and not position and not season:
+            raise Exception('Either name, id, player_id, team, season, or position must be provided.')
         
         p = PlayerData.objects.all()
         
@@ -244,12 +252,21 @@ class Query(graphene.ObjectType):
         if id:
             p = p.filter(id=id)
         
+        if ordering:
+            p = p.order_by(ordering)
+        
+        if first:
+            p = p[first:limit]
+        
+        if limit:
+            p = p[first:limit]
+        
         return p
     
-    def resolve_player_totals(self, info, name=None, season=None, player_id=None, team=None, position=None, id=None, **kwargs):
+    def resolve_player_totals(self, info, name=None, season=None, player_id=None, team=None, position=None, id=None, ordering=None, first=None, limit=None, **kwargs):
         
-        if not name and not player_id:
-            raise Exception('Either name or player_id must be provided')
+        if not name and not player_id and not id and not team and not position and not season:
+            raise Exception('Either name, id, player_id, team, season, or position must be provided.')
         
         p = PlayerDataTotals.objects.all()
         
@@ -271,12 +288,21 @@ class Query(graphene.ObjectType):
         if id:
             p = p.filter(id=id)
         
+        if ordering:
+            p = p.order_by(ordering)
+        
+        if first:
+            p = p[first:limit]
+        
+        if limit:
+            p = p[first:limit]
+        
         return p
     
-    def resolve_player_advanced(self, info, name=None, season=None, player_id=None, team=None, position=None, id=None, **kwargs):
+    def resolve_player_advanced(self, info, name=None, season=None, player_id=None, team=None, position=None, id=None, ordering=None, first=None, limit=None, **kwargs):
         
-        if not name and not player_id:
-            raise Exception('Either name or player_id must be provided.')
+        if not name and not player_id and not id and not season and not team and not position:
+            raise Exception('Either name, id, player_id, team, season, or position must be provided.')
         
         p = PlayerDataAdvanced.objects.all()
         
@@ -297,6 +323,15 @@ class Query(graphene.ObjectType):
         
         if id:
             p = p.filter(id=id)
+        
+        if ordering:
+            p = p.order_by(ordering)
+        
+        if first:
+            p = p[first:limit]
+        
+        if limit:
+            p = p[first:limit]
         
         return p
         
