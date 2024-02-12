@@ -135,6 +135,32 @@ class Query(graphene.ObjectType):
         first=graphene.Int(),
         limit=graphene.Int(),
     )
+    
+    player_totals_all = graphene.List(
+        PlayerTotalsType,
+        name=graphene.String(),
+        position=graphene.String(),
+        team=graphene.String(),
+        season=graphene.Int(),
+        player_id=graphene.String(),
+        id=graphene.Int(),
+        ordering=graphene.String(),
+        first=graphene.Int(),
+        limit=graphene.Int(),
+    )
+    
+    player_advanced_all = graphene.List(
+        PlayerAdvancedType,
+        name=graphene.String(),
+        position=graphene.String(),
+        team=graphene.String(),
+        season=graphene.Int(),
+        player_id=graphene.String(),
+        id=graphene.Int(),
+        ordering=graphene.String(),
+        first=graphene.Int(),
+        limit=graphene.Int(),
+    )
 
     def resolve_per_game_by_season(
         self, info, season, team=None, ordering=None, limit=None, first=None, **kwargs
@@ -334,6 +360,39 @@ class Query(graphene.ObjectType):
             p = p[first:limit]
         
         return p
+    
+    def resolve_player_totals_all(self, info, name=None, season=None, player_id=None, team=None, position=None, id=None, ordering=None, first=None, limit=None, **kwargs):
+        t = PlayerDataTotals.objects.all()
+        
+        if name:
+            t = t.filter(player_name=name)
+        
+        if season:
+            t = t.filter(season=season)
+        
+        if player_id:
+            t = t.filter(player_id=player_id)
+            
+        if team:
+            t = t.filter(team=team)
+            
+        if position:
+            t = t.filter(position=position)
+            
+        if id:
+            t = t.filter(id=id)
+            
+        if ordering:
+            t = t.order_by(ordering)
+        
+        if first:
+            t = t[first:limit]
+        
+        if limit:
+            t = t[first:limit]
+        
+        return t
+            
         
     
     
