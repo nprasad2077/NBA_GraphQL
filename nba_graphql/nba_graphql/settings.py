@@ -18,6 +18,7 @@ load_dotenv()
 
 psql_user = os.getenv('PSQL_USER')
 psql_pass = os.getenv('PSQL_PASS')
+droplet_url = os.getenv('droplet_url')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -90,7 +91,7 @@ DATABASES = {
         'NAME': 'nba_graphql',
         'USER': psql_user,
         'PASSWORD': psql_pass,
-        'HOST': 'localhost',
+        'HOST': droplet_url,
         'PORT': '5432',
     }
 }
