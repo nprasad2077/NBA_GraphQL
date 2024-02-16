@@ -61,7 +61,7 @@ query {
 
 ### Querying Players by Position and Ordering
 
-To query players by position and order them by total rebounds in descending order:
+To query players by position and order them by total rebounds in descending order (returns all fields:
 
 ```graphQL
 query {
@@ -69,7 +69,34 @@ query {
     age
     assists
     blocks
-    ...
+    defensiveRb
+    effectFgPercent
+    fieldAttempts
+    fieldGoals
+    ft
+    fieldPercent
+    ftAttempts
+    ftPercent
+    games
+    gamesStarted
+    id
+    minutesPg
+    offensiveRb
+    personalFouls
+    playerId
+    playerName
+    points
+    position
+    season
+    steals
+    team
+    threeAttempts
+    threeFg
+    threePercent
+    totalRb
+    turnovers
+    twoAttempts
+    twoFg
     twoPercent
   }
 }
@@ -98,14 +125,39 @@ query {
 
 ### Querying a Specific Player's Advanced Stats
 
-For detailed advanced stats for Kobe Bryant:
+For detailed advanced stats for Kobe Bryant (returns all fields):
 
 ```graphQL
 query {
   playerAdvancedAll(name: "Kobe Bryant") {
     id
     age
-    ...
+    assistPercent
+    blockPercent
+    box
+    defensiveBox
+    defensiveRbPercent
+    defensiveWs
+    ftr
+    games
+    minutesPlayed
+    offensiveBox
+    offensiveRbPercent
+    offensiveWs
+    per
+    playerId
+    playerName
+    position
+    stealPercent
+    season
+    team
+    threePAr
+    totalRbPercent
+    tsPercent
+    turnoverPercent
+    usagePercent
+    vorp
+    winShares
     winSharesPer
   }
 }
@@ -127,7 +179,7 @@ The NBA_GraphQL API provides a rich set of endpoints to query player statistics,
 
 ### Fields Available for Retrieval
 
-- **Player Totals**: Includes fields such as `playerName`, `team`, `season`, `games`, `points`, `assists`, `rebounds`, etc.
+- **Player Totals**: Includes fields such as `playerName`, `team`, `season`, `games`, `points`, `assists`, `rebounds`, `age`, `blocks`, `defensiveRB`, `effectFGPercent`, etc.
 - **Player Advanced**: Includes fields such as `playerName`, `team`, `season`, `winShares`, `per`, `vorp`, `usagePercent`, etc.
 
 For a comprehensive list of fields and detailed examples of queries and mutations, please refer to the GraphQL schema documentation available at the GraphiQL interface.
