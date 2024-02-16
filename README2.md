@@ -185,3 +185,34 @@ The NBA_GraphQL API provides a rich set of endpoints to query player statistics,
 For a comprehensive list of fields and detailed examples of queries and mutations, please refer to the GraphQL schema documentation available at the GraphiQL interface.
 
 By following these instructions and examples, you should be well-equipped to start exploring and utilizing the NBA_GraphQL API for your projects.
+
+## Project Structure
+
+Here is a brief description of the project's main directories and files:
+
+GraphQL API: /graphql_api/
+The GraphQL API is defined in this directory. It includes the essential files such as:
+
+admin.py: Registers models for the admin interface.
+apps.py: Configuration for the GraphQL API app.
+models.py: Defined models for database schema of the GraphQL API.
+schema.py: Defined GraphQL schemas for querying the database.
+views.py: Handles requests and returns responses.
+Migrations: /graphql_api/migrations/
+This directory contains all the migrations files.
+
+0001_initial.py: The initial migration that creates the database.
+Other migration files postfix with a number (0002, 0003, etc) represent each migration performed on the database.
+NBA_GraphQL: /nba_graphql/
+This directory contains the configuration for the NBA_GraphQL Django project.
+
+settings.py: Contains settings for the Django project such as database details, installed apps, middleware classes, etc.
+urls.py: Defined URLs for the project.
+schema.py: Consolidated schema from all apps.
+Scripts: /scripts/
+The scripts directory consists of python scripts used to import data to the database.
+
+Static: /static/
+Static files directory. It hosts static files like CSS, images, and Javascript files which are required by Django's admin panel.
+
+This completes the general overview of the project's structure. If you need an explanation for a specific file or directory, please let me know!
