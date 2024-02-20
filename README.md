@@ -184,7 +184,7 @@ The NBA_GraphQL API provides a rich set of endpoints to query player statistics,
 
 ### Fields Available for Retrieval
 
-- **Player Totals**: Includes fields such as `playerName`, `team`, `season`, `games`, `points`, `assists`, `rebounds`, `age`, `blocks`, `defensiveRB`, `effectFGPercent`, etc.
+- **Player Totals**: Includes fields such as `playerName`, `team`, `season`, `games`, `points`, `assists`, `rebounds`, `age`, `blocks`, `defensiveRB`, `effectFGPercent`, `fieldAttempts`, `fieldGoals`, `ft`, `fieldPercent`, `ftAttempts`, `ftPercent`, `gamesStarted`, `id (pkey)`, `minutesPG`, etc. 
 - **Player Advanced**: Includes fields such as `playerName`, `team`, `season`, `winShares`, `per`, `vorp`, `usagePercent`, etc.
 
 For a comprehensive list of fields and detailed examples of queries and mutations, please refer to the GraphQL schema documentation available at the GraphiQL interface.
