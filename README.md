@@ -1,5 +1,8 @@
 # GraphQL NBA Database
 
+## Query the deployed API endpoint
+[http://209.38.172.107/graphql/](http://209.38.172.107/graphql/)
+
 ## Installation Instructions
 
 To get started with the NBA_GraphQL API, follow these steps to set up your environment. This guide assumes you have Python and pip installed on your system.
@@ -41,9 +44,6 @@ To get started with the NBA_GraphQL API, follow these steps to set up your envir
    ```
 
    This command will start the Django development server, making the GraphQL endpoint accessible at [http://127.0.0.1:8000/graphql/](http://127.0.0.1:8000/graphql/).
-
-## OR Query the deployed API endpoint
-[http://209.38.172.107/graphql/](http://209.38.172.107/graphql/)
 
 ## Usage Examples
 
