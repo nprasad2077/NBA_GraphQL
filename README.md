@@ -22,6 +22,8 @@ query {
 }
 ```
 
+This will return the player name, position, season, team, games played, and database id for every row entry in the database matching name for 'LeBron James'.
+
 ### Querying Players by Position and Ordering
 
 To query players by position and order them by total rebounds in descending order (returns all fields:
