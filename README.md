@@ -3,48 +3,6 @@
 ## Query the deployed API endpoint
 [http://209.38.172.107/graphql/](http://209.38.172.107/graphql/)
 
-## Installation Instructions
-
-To get started with the NBA_GraphQL API, follow these steps to set up your environment. This guide assumes you have Python and pip installed on your system.
-
-1. **Clone the Repository**
-   First, clone the repository to your local machine using Git:
-
-   ```bash
-   git clone https://github.com/yourusername/NBA_GraphQL.git
-   cd NBA_GraphQL
-   ```
-
-2. **Set Up a Virtual Environment**
-   It's recommended to use a virtual environment for Python projects. This keeps your dependencies for the project separate and organized. Create and activate a virtual environment with:
-
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
-
-   On Windows, activation is slightly different:
-
-   ```bash
-   venv\Scripts\activate
-   ```
-
-3. **Install Dependencies**
-   Install the required Python packages for the API:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Start the Server**
-   Once the dependencies are installed, you can start the GraphQL server with:
-
-   ```bash
-   python manage.py runserver
-   ```
-
-   This command will start the Django development server, making the GraphQL endpoint accessible at [http://127.0.0.1:8000/graphql/](http://127.0.0.1:8000/graphql/).
-
 ## Usage Examples
 
 ### Querying Player Totals
@@ -190,6 +148,49 @@ The NBA_GraphQL API provides a rich set of endpoints to query player statistics,
 For a comprehensive list of fields and detailed examples of queries and mutations, please refer to the GraphQL schema documentation available at the [GraphiQL interface.](http://209.38.172.107/graphql/)
 
 By following these instructions and examples, you should be well-equipped to start exploring and utilizing the NBA_GraphQL API for your projects.
+
+## Installation Instructions
+
+To get started with the NBA_GraphQL API, follow these steps to set up your environment. This guide assumes you have Python and pip installed on your system.
+
+1. **Clone the Repository**
+   First, clone the repository to your local machine using Git:
+
+   ```bash
+   git clone https://github.com/yourusername/NBA_GraphQL.git
+   cd NBA_GraphQL
+   ```
+
+2. **Set Up a Virtual Environment**
+   It's recommended to use a virtual environment for Python projects. This keeps your dependencies for the project separate and organized. Create and activate a virtual environment with:
+
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+
+   On Windows, activation is slightly different:
+
+   ```bash
+   venv\Scripts\activate
+   ```
+
+3. **Install Dependencies**
+   Install the required Python packages for the API:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Start the Server**
+   Once the dependencies are installed, you can start the GraphQL server with:
+
+   ```bash
+   python manage.py runserver
+   ```
+
+   This command will start the Django development server, making the GraphQL endpoint accessible at [http://127.0.0.1:8000/graphql/](http://127.0.0.1:8000/graphql/).
+
 
 ## Here's a trippy take on the GraphQL and NBA blend: a player, amidst a swirl of colors, dribbles a ball that's a universe in itself, echoing the patterns of GraphQL in a cosmic court. 🌀🏀🌌
 
