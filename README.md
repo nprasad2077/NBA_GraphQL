@@ -1,6 +1,7 @@
 # GraphQL NBA Database
 
 ## Query the deployed API endpoint
+
 [http://209.38.172.107/graphql/](http://209.38.172.107/graphql/)
 
 ## Usage Examples
@@ -140,11 +141,11 @@ The NBA_GraphQL API provides a rich set of endpoints to query player statistics,
 ### Filters and Ordering
 
 - **Filters**: `name`, `season`, `team`, `position`, `playerID`, `id (pk)`.
-- **Ordering Functions**: Support for ascending and descending order based on statistical categories. Put a '-' sign in front of categories to obtain descending order. For example `-points` in the ordering query paramater would return results by points in descending order. 
+- **Ordering Functions**: Support for ascending and descending order based on statistical categories. Put a '-' sign in front of categories to obtain descending order. For example `-points` in the ordering query paramater would return results by points in descending order.
 
 ### Fields Available for Retrieval
 
-- **Player Totals**: Includes fields such as `playerName`, `team`, `season`, `games`, `points`, `assists`, `rebounds`, `age`, `blocks`, `defensiveRB`, `effectFGPercent`, `fieldAttempts`, `fieldGoals`, `ft`, `fieldPercent`, `ftAttempts`, `ftPercent`, `gamesStarted`, `id (pkey)`, `minutesPG`, etc. 
+- **Player Totals**: Includes fields such as `playerName`, `team`, `season`, `games`, `points`, `assists`, `rebounds`, `age`, `blocks`, `defensiveRB`, `effectFGPercent`, `fieldAttempts`, `fieldGoals`, `ft`, `fieldPercent`, `ftAttempts`, `ftPercent`, `gamesStarted`, `id (pkey)`, `minutesPG`, etc.
 - **Player Advanced**: Includes fields such as `playerName`, `team`, `season`, `winShares`, `per`, `vorp`, `usagePercent`, etc.
 
 For a comprehensive list of fields and detailed examples of queries and mutations, please refer to the GraphQL schema documentation available at the [GraphiQL interface.](http://209.38.172.107/graphql/)
@@ -192,7 +193,6 @@ To get started with the NBA_GraphQL API, follow these steps to set up your envir
    ```
 
    This command will start the Django development server, making the GraphQL endpoint accessible at [http://127.0.0.1:8000/graphql/](http://127.0.0.1:8000/graphql/).
-
 
 ## Here's a trippy take on the GraphQL and NBA blend: a player, amidst a swirl of colors, dribbles a ball that's a universe in itself, echoing the patterns of GraphQL in a cosmic court. 🌀🏀🌌
 
