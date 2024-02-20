@@ -26,7 +26,7 @@ This will return the player name, position, season, team, games played, and data
 
 ### Querying Players by Position and Ordering
 
-To query players by position and order them by total rebounds in descending order (returns all fields:
+To query players by position and order them by total rebounds in descending order (returns all possible fields):
 
 ```graphQL
 query {
