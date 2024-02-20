@@ -140,7 +140,7 @@ The NBA_GraphQL API provides a rich set of endpoints to query player statistics,
 ### Filters and Ordering
 
 - **Filters**: `name`, `season`, `team`, `position`, `playerID`, `id (pk)`.
-- **Ordering Functions**: Support for ascending and descending order based on statistical categories.
+- **Ordering Functions**: Support for ascending and descending order based on statistical categories. Put a '-' sign in front of categories to obtain descending order. For example `-points` in the ordering query paramater would return results by points in descending order. 
 
 ### Fields Available for Retrieval
 
