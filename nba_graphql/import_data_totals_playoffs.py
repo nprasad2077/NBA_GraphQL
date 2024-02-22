@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "nba_graphql.settings")
 django.setup()
 
-from graphql_api.models import PlayerDataTotals
+from graphql_api.models import PlayerDataTotalsPlayoffs
 
 # Get the website content
 season_input = input('What season? ')
@@ -17,9 +17,9 @@ except ValueError:
     print('Invalid Value')
     exit(1)
 
-url = "https://www.basketball-reference.com/leagues/NBA_" + str(season_int) + "_totals.html"
+url = "https://www.basketball-reference.com/playoffs/NBA_" + str(season_int) + "_totals.html"
 print(url)
-url_print = 'https://www.basketball-reference.com/leagues/NBA_2023_totals.html'
+
 response = requests.get(url)
 soup = BeautifulSoup(response.content, "html.parser")
 
@@ -38,11 +38,11 @@ header_values.append("Player-additional")
 
 # Testing output
 
-print(div, file=open("div.txt", "w"))
+# print(div, file=open("div.txt", "w"))
 
-print(table, file=open("table.txt", "w"))
+# print(table, file=open("table.txt", "w"))
 
-print(header_values, file=open("headers.txt", "w"))
+# print(header_values, file=open("headers.txt", "w"))
 
 # Extract rows into table.
 
@@ -64,7 +64,7 @@ for row in rows:
 
 
 # Write to CSV
-with open(f"../data/totals/{season_input}_player_totals.csv", "w", newline="") as file:
+with open(f"../data/totals_playoffs/{season_input}_player_totals.csv", "w", newline="") as file:
     writer = csv.writer(file)
     writer.writerow(header_values) # write headers
     writer.writerows(data_rows)
@@ -75,11 +75,11 @@ print('Write to CSV success')
 # Write to Database
 
 def run():
-    with open(f"../data/totals/{season_input}_player_totals.csv", 'r') as file:
+    with open(f"../data/totals_playoffs/{season_input}_player_totals.csv", 'r') as file:
         reader = csv.DictReader(file)
         
         for row in reader:
-            player =  PlayerDataTotals()
+            player =  PlayerDataTotalsPlayoffs()
             player.player_name = row['Player']
             player.position = row['Pos']
             
