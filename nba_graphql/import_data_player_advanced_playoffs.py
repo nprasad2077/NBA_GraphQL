@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "nba_graphql.settings")
 django.setup()
 
-from graphql_api.models import PlayerDataAdvanced
+from graphql_api.models import PlayerDataAdvancedPlayoffs
 
 # Obtain Player Advanced Data
 season_input = input('What season? ')
@@ -18,7 +18,7 @@ except ValueError:
     print('Invalid Value')
     exit(1)
 
-url = 'https://www.basketball-reference.com/leagues/NBA_' + str(season_int) + '_advanced.html'
+url = 'https://www.basketball-reference.com/playoffs/NBA_' + str(season_int) + '_advanced.html'
 print(url)
 
 response = requests.get(url)
@@ -54,7 +54,7 @@ for row in rows:
         data_rows.append(cols)
 
 # Write to CSV
-with open(f'../data/advanced/{season_int}_player_advanced_data.csv', 'w', newline='') as file:
+with open(f'../data/advanced_playoffs/{season_int}_player_advanced_data_playoffs.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(header_values)
     writer.writerows(data_rows)
@@ -64,11 +64,11 @@ print('Write to CSV success!')
 # Write to Database
 
 def run():
-    with open(f'../data/advanced/{season_int}_player_advanced_data.csv', 'r') as file:
+    with open(f'../data/advanced_playoffs/{season_int}_player_advanced_data_playoffs.csv', 'r') as file:
         reader = csv.DictReader(file)
         
         for row in reader:
-            player = PlayerDataAdvanced()
+            player = PlayerDataAdvancedPlayoffs()
             player.player_name = row['Player']
             player.position = row['Pos']
             
