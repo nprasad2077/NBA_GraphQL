@@ -153,6 +153,19 @@ class Query(graphene.ObjectType):
         first=graphene.Int(),
         limit=graphene.Int(),
     )
+    
+    player_advanced_playoffs = graphene.List(
+        PlayerAdvancedPlayoffsType,
+        name=graphene.String(),
+        position=graphene.String(),
+        team=graphene.String(),
+        season=graphene.Int(),
+        player_id=graphene.String(),
+        id=graphene.Int(),
+        ordering=graphene.String(),
+        first=graphene.Int(),
+        limit=graphene.Int(),       
+    )
           
     def resolve_team_by_name(self, info, abbr, season=None, ordering=None, first=None, limit=None, **kwargs):
         t = TeamData.objects.filter(team_abbr=abbr)
@@ -419,5 +432,34 @@ class Query(graphene.ObjectType):
         return t
             
         
+    def resolve_player_advanced_playoffs(self, info, name=None, season=None, player_id=None, team=None, position=None, id=None, ordering=None, first=None, limit=None, **kwargs):
+        a = PlayerDataAdvancedPlayoffs.objects.all()
         
+        if name:
+            a = a.filter(player_name__icontains=name)
+        
+        if season:
+            a = a.filter(season=season)
+        
+        if player_id:
+            a = a.filter(player_id=player_id)
             
+        if team:
+            a = a.filter(team=team)
+        
+        if position:
+            a = a.filter(position=position)
+        
+        if id:
+            a = a.filter(id=id)
+        
+        if ordering:
+            a = a.order_by(ordering)
+            
+        if first:
+            a = a[first:limit]
+            
+        if limit:
+            a = a[first:limit]
+            
+        return a
