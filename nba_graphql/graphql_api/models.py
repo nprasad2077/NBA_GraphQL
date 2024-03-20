@@ -204,6 +204,8 @@ class TeamData(models.Model):
     playoffs = models.TextField()
     coaches = models.TextField()
     top_ws = models.TextField()
+    top_ws_player = models.TextField(null=True, blank=True)
+    ws = models.DecimalField(max_digits=3, decimal_places=1, null=True, blank=True)
     
     def __str__(self):
         return self.team_name
