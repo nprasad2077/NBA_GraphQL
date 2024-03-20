@@ -31,9 +31,10 @@ class Query(graphene.ObjectType):
     
     
     # Search for Team information
-    team_by_name = graphene.List(
+    team = graphene.List(
         TeamDataType,
-        abbr=graphene.String(required=True),
+        team_abbr=graphene.String(),
+        team_name=graphene.String(),
         season=graphene.Int(),
         ordering=graphene.String(),
         first=graphene.Int(),
@@ -105,9 +106,15 @@ class Query(graphene.ObjectType):
         limit=graphene.Int(),       
     )
           
-    def resolve_team_by_name(self, info, abbr, season=None, ordering=None, first=None, limit=None, **kwargs):
-        t = TeamData.objects.filter(team_abbr=abbr)
+    def resolve_team(self, info, team_abbr=None, team_name=None, season=None, ordering=None, first=None, limit=None, **kwargs):
+        t = TeamData.objects.all()
         
+        if team_abbr:
+            t = t.filter(team_abbr=team_abbr)
+            
+        if team_name:
+            t = t.filter(team_name__icontains=team_name)
+            
         if season:
             t = t.filter(season=season)
             
@@ -119,6 +126,8 @@ class Query(graphene.ObjectType):
         
         if limit:
             t = t[first:limit]
+        
+        return t
             
     
     def resolve_player_totals(self, info, name=None, season=None, player_id=None, team=None, position=None, id=None, ordering=None, first=None, limit=None, **kwargs):
