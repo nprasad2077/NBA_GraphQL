@@ -1,6 +1,6 @@
 import graphene
 from graphene_django.types import DjangoObjectType
-from .models import PlayerData, PlayerDataTotals, PlayerDataAdvanced, TeamData
+from .models import PlayerData, PlayerDataTotals, PlayerDataAdvanced, TeamData, PlayerDataTotalsPlayoffs, PlayerDataAdvancedPlayoffs
 
 
 class PlayerType(DjangoObjectType):
@@ -18,7 +18,14 @@ class PlayerAdvancedType(DjangoObjectType):
 class TeamDataType(DjangoObjectType):
     class Meta:
         model = TeamData
+        
+class PlayerTotalsPlayoffsType(DjangoObjectType):
+    class Meta:
+        model = PlayerDataTotalsPlayoffs
 
+class PlayerAdvancedPlayoffsType(DjangoObjectType):
+    class Meta:
+        model = PlayerDataAdvancedPlayoffs
 
 class Query(graphene.ObjectType):
     
@@ -132,6 +139,32 @@ class Query(graphene.ObjectType):
         ordering=graphene.String(),
         first=graphene.Int(),
         limit=graphene.Int(),
+    )
+    
+    player_totals_playoffs = graphene.List(
+        PlayerTotalsPlayoffsType,
+        name=graphene.String(),
+        position=graphene.String(),
+        team=graphene.String(),
+        season=graphene.Int(),
+        player_id=graphene.String(),
+        id=graphene.Int(),
+        ordering=graphene.String(),
+        first=graphene.Int(),
+        limit=graphene.Int(),
+    )
+    
+    player_advanced_playoffs = graphene.List(
+        PlayerAdvancedPlayoffsType,
+        name=graphene.String(),
+        position=graphene.String(),
+        team=graphene.String(),
+        season=graphene.Int(),
+        player_id=graphene.String(),
+        id=graphene.Int(),
+        ordering=graphene.String(),
+        first=graphene.Int(),
+        limit=graphene.Int(),       
     )
           
     def resolve_team_by_name(self, info, abbr, season=None, ordering=None, first=None, limit=None, **kwargs):
@@ -366,4 +399,67 @@ class Query(graphene.ObjectType):
         
         
         
+    def resolve_player_totals_playoffs(self, info, name=None, season=None, player_id=None, team=None, position=None, id=None, ordering=None, first=None, limit=None, **kwargs):
+        t =PlayerDataTotalsPlayoffs.objects.all()
         
+        if name:
+            t = t.filter(player_name__icontains=name)
+        
+        if season:
+            t = t.filter(season=season)
+        
+        if player_id:
+            t = t.filter(player_id=player_id)
+            
+        if team:
+            t = t.filter(team=team)
+            
+        if position:
+            t = t.filter(position=position)
+            
+        if id:
+            t = t.filter(id=id)
+            
+        if ordering:
+            t = t.order_by(ordering)
+        
+        if first:
+            t = t[first:limit]
+        
+        if limit:
+            t = t[first:limit]
+        
+        return t
+            
+        
+    def resolve_player_advanced_playoffs(self, info, name=None, season=None, player_id=None, team=None, position=None, id=None, ordering=None, first=None, limit=None, **kwargs):
+        a = PlayerDataAdvancedPlayoffs.objects.all()
+        
+        if name:
+            a = a.filter(player_name__icontains=name)
+        
+        if season:
+            a = a.filter(season=season)
+        
+        if player_id:
+            a = a.filter(player_id=player_id)
+            
+        if team:
+            a = a.filter(team=team)
+        
+        if position:
+            a = a.filter(position=position)
+        
+        if id:
+            a = a.filter(id=id)
+        
+        if ordering:
+            a = a.order_by(ordering)
+            
+        if first:
+            a = a[first:limit]
+            
+        if limit:
+            a = a[first:limit]
+            
+        return a

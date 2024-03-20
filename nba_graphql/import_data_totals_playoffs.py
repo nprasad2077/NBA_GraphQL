@@ -64,7 +64,7 @@ for row in rows:
 
 
 # Write to CSV
-with open(f"../data/totals_playoffs/{season_input}_player_totals.csv", "w", newline="") as file:
+with open(f"../data/totals_playoffs/{season_input}_player_totals_playoffs.csv", "w", newline="") as file:
     writer = csv.writer(file)
     writer.writerow(header_values) # write headers
     writer.writerows(data_rows)
@@ -75,7 +75,7 @@ print('Write to CSV success')
 # Write to Database
 
 def run():
-    with open(f"../data/totals_playoffs/{season_input}_player_totals.csv", 'r') as file:
+    with open(f"../data/totals_playoffs/{season_input}_player_totals_playoffs.csv", 'r') as file:
         reader = csv.DictReader(file)
         
         for row in reader:
