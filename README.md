@@ -2,7 +2,7 @@
 
 ## Query the deployed API endpoint
 
-[http://209.38.172.107/graphql/](http://209.38.172.107/graphql/)
+[https://nbaapi.com/graphql/](https://nbaapi.com/graphql/)
 
 ## Usage Examples
 
