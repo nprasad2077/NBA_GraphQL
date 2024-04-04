@@ -12,8 +12,8 @@ django.setup()
 from graphql_api.models import ShotChartData
 
 # Obtain start and finish seasons from the user
-start_season_input = input('Enter start season (e.g., 2016): ')
-finish_season_input = input('Enter finish season (e.g., 1997): ')
+start_season_input = input('Enter recent start season (e.g., 2016): ')
+finish_season_input = input('Enter rookie finish season (e.g., 1997): ')
 
 try:
     start_season = int(start_season_input)
@@ -24,7 +24,7 @@ except ValueError as e:
     print(f"Invalid input: {e}")
     exit(1)
 
-player_name = 'Kobe Bryant'
+player_name = 'Stephen Curry'
 
 # Function to get player ID
 def get_player_id(name):
