@@ -335,11 +335,12 @@ class ShotChartData(models.Model):
     shot_type = models.CharField(max_length=6,  default='')
     distance_ft = models.IntegerField(null=True)
     lead = models.BooleanField(null=True)
-    lebron_team_score = models.IntegerField(null=True)
+    team_score = models.IntegerField(null=True)
     opponent_team_score = models.IntegerField(null=True)
     opponent = models.CharField(max_length=30, default='')
     team = models.CharField(max_length=30, default='')
     season = models.IntegerField(null=True)
+    player_id = models.CharField(max_length=255, default='')
 
     def __str__(self):
         return self.player_name
