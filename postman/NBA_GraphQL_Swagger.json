@@ -1,0 +1,787 @@
+openapi: 3.0.0
+info:
+  title: NBA GraphQL
+  description: >-
+    Welcome to the NBA GraphQL API documentation! The NBA GraphQL API is your
+    one-stop solution to fetch detailed and advanced statistics related o NBA
+    players. Be it aggregated statistics or deeper, more insightful metrics, the
+    NBA GraphQL API has got you covered.
+
+
+    With our robust and flexible API, you can filter and order results according
+    to various  
+
+    criteria such as player name, team, season, and position. Are you interested
+    in LeBron James's overall performance, Kobe Bryant's advanced stats, or
+    simply want to sort players by their total rebounds? All of this and much
+    more is available through our simple yet powerful GraphQL interface.
+
+
+    Our API features two primary endpoints: `playerTotalsAll`, which provides
+    aggregated statistics for players, and `playerAdvancedAll` , which delves
+    into deeper, more insightful statistics for analytical purposes. Each of
+    these endpoints can be tailored with various filters and ordering functions
+    to suit your specific requirements.
+
+
+    This documentation aims to help you understand each aspect of the NBA
+    GraphQL API, from basic operation principles to detailed explanations of
+    different queries and fields. Read through detailed usage examples,
+    understand each endpoint and its respective functionality, and let's start
+    unraveling the vast field of NBA player statistics one query at a time.
+
+
+    To get started, head over to our GraphiQL interface for real-time
+    interaction with our API and explanatory schema documentation at
+    [https://www.nbaapi.com/graphql/](https://www.nbaapi.com/graphql/).
+
+
+    Make use of this comprehensive resource to unlock the potential of the NBA
+    GraphQL API and fetch statistics that are crucial to your projects. Happy
+    querying!
+  version: 1.0.0
+servers:
+  - url: https://www.nbaapi.com
+paths:
+  /graphql/:
+    get:
+      tags:
+        - default
+      summary: Team Data
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.22.1
+            Date:
+              schema:
+                type: string
+                example: Thu, 21 Mar 2024 04:50:34 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '4778'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Vary:
+              schema:
+                type: string
+                example: Cookie, origin
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            Referrer-Policy:
+              schema:
+                type: string
+                example: same-origin
+            Cross-Origin-Opener-Policy:
+              schema:
+                type: string
+                example: same-origin
+            Set-Cookie:
+              schema:
+                type: string
+                example: >-
+                  csrftoken=5lK7CIbGNVHizmme7opusUI7ysHacTbV; expires=Thu, 20
+                  Mar 2025 04:50:34 GMT; Max-Age=31449600; Path=/; SameSite=Lax
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Team Abbreviation - MIA
+                  value:
+                    data:
+                      team:
+                        - season: 2013
+                          teamName: Miami Heat*
+                          coaches: E. Spoelstra (66-16)
+                          topWs: L. James (19.3)
+                          wins: 66
+                          playoffs: Won Finals
+                        - season: 2014
+                          teamName: Miami Heat*
+                          coaches: E. Spoelstra (54-28)
+                          topWs: L. James (15.9)
+                          wins: 54
+                          playoffs: Lost Finals
+                        - season: 2011
+                          teamName: Miami Heat*
+                          coaches: E. Spoelstra (58-24)
+                          topWs: L. James (15.6)
+                          wins: 58
+                          playoffs: Lost Finals
+                        - season: 2009
+                          teamName: Miami Heat*
+                          coaches: E. Spoelstra (43-39)
+                          topWs: D. Wade (14.7)
+                          wins: 43
+                          playoffs: Lost E. Conf. 1st Rnd.
+                        - season: 2012
+                          teamName: Miami Heat*
+                          coaches: E. Spoelstra (46-20)
+                          topWs: L. James (14.5)
+                          wins: 46
+                          playoffs: Won Finals
+                        - season: 2006
+                          teamName: Miami Heat*
+                          coaches: S. Van Gundy (11-10), P. Riley (41-20)
+                          topWs: D. Wade (14.4)
+                          wins: 52
+                          playoffs: Won Finals
+                        - season: 2010
+                          teamName: Miami Heat*
+                          coaches: E. Spoelstra (47-35)
+                          topWs: D. Wade (13.0)
+                          wins: 47
+                          playoffs: Lost E. Conf. 1st Rnd.
+                        - season: 2000
+                          teamName: Miami Heat*
+                          coaches: P. Riley (52-30)
+                          topWs: A. Mourning (12.9)
+                          wins: 52
+                          playoffs: Lost E. Conf. Semis
+                        - season: 1997
+                          teamName: Miami Heat*
+                          coaches: P. Riley (61-21)
+                          topWs: T. Hardaway (12.9)
+                          wins: 61
+                          playoffs: Lost E. Conf. Finals
+                        - season: 2023
+                          teamName: Miami Heat*
+                          coaches: E. Spoelstra (44-38)
+                          topWs: J. Butler (12.3)
+                          wins: 44
+                          playoffs: Lost Finals
+                        - season: 1998
+                          teamName: Miami Heat*
+                          coaches: P. Riley (55-27)
+                          topWs: T. Hardaway (11.7)
+                          wins: 55
+                          playoffs: Lost E. Conf. 1st Rnd.
+                        - season: 2001
+                          teamName: Miami Heat*
+                          coaches: P. Riley (50-32)
+                          topWs: A. Mason (11.6)
+                          wins: 50
+                          playoffs: Lost E. Conf. 1st Rnd.
+                        - season: 2005
+                          teamName: Miami Heat*
+                          coaches: S. Van Gundy (59-23)
+                          topWs: D. Wade (11.0)
+                          wins: 59
+                          playoffs: Lost E. Conf. Finals
+                        - season: 2002
+                          teamName: Miami Heat
+                          coaches: P. Riley (36-46)
+                          topWs: E. Jones (10.5)
+                          wins: 36
+                          playoffs: ''
+                        - season: 2016
+                          teamName: Miami Heat*
+                          coaches: E. Spoelstra (48-34)
+                          topWs: H. Whiteside (10.3)
+                          wins: 48
+                          playoffs: Lost E. Conf. Semis
+                        - season: 1994
+                          teamName: Miami Heat*
+                          coaches: K. Loughery (42-40)
+                          topWs: G. Rice (10.2)
+                          wins: 42
+                          playoffs: Lost E. Conf. 1st Rnd.
+                        - season: 1995
+                          teamName: Miami Heat
+                          coaches: K. Loughery (17-29), A. Gentry (15-21)
+                          topWs: G. Rice (10.0)
+                          wins: 32
+                          playoffs: ''
+                        - season: 1996
+                          teamName: Miami Heat*
+                          coaches: P. Riley (42-40)
+                          topWs: A. Mourning (9.9)
+                          wins: 42
+                          playoffs: Lost E. Conf. 1st Rnd.
+                        - season: 2017
+                          teamName: Miami Heat
+                          coaches: E. Spoelstra (41-41)
+                          topWs: H. Whiteside (9.5)
+                          wins: 41
+                          playoffs: ''
+                        - season: 2021
+                          teamName: Miami Heat*
+                          coaches: E. Spoelstra (40-32)
+                          topWs: J. Butler (9.3)
+                          wins: 40
+                          playoffs: Lost E. Conf. 1st Rnd.
+                        - season: 2022
+                          teamName: Miami Heat*
+                          coaches: E. Spoelstra (53-29)
+                          topWs: J. Butler (9.2)
+                          wins: 53
+                          playoffs: Lost E. Conf. Finals
+                        - season: 2004
+                          teamName: Miami Heat*
+                          coaches: S. Van Gundy (42-40)
+                          topWs: E. Jones (9.1)
+                          wins: 42
+                          playoffs: Lost E. Conf. Semis
+                        - season: 2020
+                          teamName: Miami Heat*
+                          coaches: E. Spoelstra (44-29)
+                          topWs: J. Butler (9.0)
+                          wins: 44
+                          playoffs: Lost Finals
+                        - season: 2007
+                          teamName: Miami Heat*
+                          coaches: P. Riley (44-38)
+                          topWs: D. Wade (8.8)
+                          wins: 44
+                          playoffs: Lost E. Conf. 1st Rnd.
+                        - season: 1999
+                          teamName: Miami Heat*
+                          coaches: P. Riley (33-17)
+                          topWs: A. Mourning (7.9)
+                          wins: 33
+                          playoffs: Lost E. Conf. 1st Rnd.
+                        - season: 1992
+                          teamName: Miami Heat*
+                          coaches: K. Loughery (38-44)
+                          topWs: G. Rice (7.9)
+                          wins: 38
+                          playoffs: Lost E. Conf. 1st Rnd.
+                        - season: 2003
+                          teamName: Miami Heat
+                          coaches: P. Riley (25-57)
+                          topWs: B. Grant (7.7)
+                          wins: 25
+                          playoffs: ''
+                        - season: 2019
+                          teamName: Miami Heat
+                          coaches: E. Spoelstra (39-43)
+                          topWs: B. Adebayo (6.8)
+                          wins: 39
+                          playoffs: ''
+                        - season: 1993
+                          teamName: Miami Heat
+                          coaches: K. Loughery (36-46)
+                          topWs: G. Long (6.5)
+                          wins: 36
+                          playoffs: ''
+                        - season: 2018
+                          teamName: Miami Heat*
+                          coaches: E. Spoelstra (44-38)
+                          topWs: K. Olynyk (5.5)
+                          wins: 44
+                          playoffs: Lost E. Conf. 1st Rnd.
+                        - season: 2015
+                          teamName: Miami Heat
+                          coaches: E. Spoelstra (37-45)
+                          topWs: L. Deng (5.4)
+                          wins: 37
+                          playoffs: ''
+                        - season: 1991
+                          teamName: Miami Heat
+                          coaches: R. Rothstein (24-58)
+                          topWs: S. Douglas (5.4)
+                          wins: 24
+                          playoffs: ''
+                        - season: 1989
+                          teamName: Miami Heat
+                          coaches: R. Rothstein (15-67)
+                          topWs: G. Long (4.6)
+                          wins: 15
+                          playoffs: ''
+                        - season: 1990
+                          teamName: Miami Heat
+                          coaches: R. Rothstein (18-64)
+                          topWs: S. Douglas (4.4)
+                          wins: 18
+                          playoffs: ''
+                        - season: 2008
+                          teamName: Miami Heat
+                          coaches: P. Riley (15-67)
+                          topWs: D. Wade (3.3)
+                          wins: 15
+                          playoffs: ''
+                example-1:
+                  summary: Team Abbreviation - GSW
+                  value:
+                    data:
+                      team:
+                        - season: 2016
+                          teamName: Golden State Warriors*
+                          teamAbbr: GSW
+                          topWs: S. Curry (17.9)
+                          wins: 73
+                          playoffs: Lost Finals
+                        - season: 2015
+                          teamName: Golden State Warriors*
+                          teamAbbr: GSW
+                          topWs: S. Curry (15.7)
+                          wins: 67
+                          playoffs: Won Finals
+                        - season: 2017
+                          teamName: Golden State Warriors*
+                          teamAbbr: GSW
+                          topWs: S. Curry (12.6)
+                          wins: 67
+                          playoffs: Won Finals
+                        - season: 1976
+                          teamName: Golden State Warriors*
+                          teamAbbr: GSW
+                          topWs: R. Barry (9.6)
+                          wins: 59
+                          playoffs: Lost W. Conf. Finals
+                        - season: 2018
+                          teamName: Golden State Warriors*
+                          teamAbbr: GSW
+                          topWs: K. Durant (10.4)
+                          wins: 58
+                          playoffs: Won Finals
+                        - season: 2019
+                          teamName: Golden State Warriors*
+                          teamAbbr: GSW
+                          topWs: K. Durant (11.5)
+                          wins: 57
+                          playoffs: Lost Finals
+                        - season: 1992
+                          teamName: Golden State Warriors*
+                          teamAbbr: GSW
+                          topWs: C. Mullin (10.8)
+                          wins: 55
+                          playoffs: Lost W. Conf. 1st Rnd.
+                        - season: 2022
+                          teamName: Golden State Warriors*
+                          teamAbbr: GSW
+                          topWs: S. Curry (8.0)
+                          wins: 53
+                          playoffs: Won Finals
+                        - season: 2014
+                          teamName: Golden State Warriors*
+                          teamAbbr: GSW
+                          topWs: S. Curry (13.4)
+                          wins: 51
+                          playoffs: Lost W. Conf. 1st Rnd.
+                        - season: 1972
+                          teamName: Golden State Warriors*
+                          teamAbbr: GSW
+                          topWs: J. Mullins (9.9)
+                          wins: 51
+                          playoffs: Lost W. Conf. Semis
+                        - season: 1994
+                          teamName: Golden State Warriors*
+                          teamAbbr: GSW
+                          topWs: L. Sprewell (8.0)
+                          wins: 50
+                          playoffs: Lost W. Conf. 1st Rnd.
+                        - season: 1962
+                          teamName: Philadelphia Warriors*
+                          teamAbbr: GSW
+                          topWs: W. Chamberlain (23.1)
+                          wins: 49
+                          playoffs: Lost E. Div. Finals
+                        - season: 1960
+                          teamName: Philadelphia Warriors*
+                          teamAbbr: GSW
+                          topWs: W. Chamberlain (17.0)
+                          wins: 49
+                          playoffs: Lost E. Div. Finals
+                        - season: 1975
+                          teamName: Golden State Warriors*
+                          teamAbbr: GSW
+                          topWs: R. Barry (12.7)
+                          wins: 48
+                          playoffs: Won Finals
+                        - season: 1964
+                          teamName: San Francisco Warriors*
+                          teamAbbr: GSW
+                          topWs: W. Chamberlain (25.0)
+                          wins: 48
+                          playoffs: Lost Finals
+                        - season: 2008
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: M. Ellis (9.0)
+                          wins: 48
+                          playoffs: ''
+                        - season: 2013
+                          teamName: Golden State Warriors*
+                          teamAbbr: GSW
+                          topWs: S. Curry (11.2)
+                          wins: 47
+                          playoffs: Lost W. Conf. Semis
+                        - season: 1973
+                          teamName: Golden State Warriors*
+                          teamAbbr: GSW
+                          topWs: R. Barry (10.2)
+                          wins: 47
+                          playoffs: Lost W. Conf. Finals
+                        - season: 1961
+                          teamName: Philadelphia Warriors*
+                          teamAbbr: GSW
+                          topWs: W. Chamberlain (18.8)
+                          wins: 46
+                          playoffs: Lost E. Div. Semis
+                        - season: 1977
+                          teamName: Golden State Warriors*
+                          teamAbbr: GSW
+                          topWs: R. Barry (8.4)
+                          wins: 46
+                          playoffs: Lost W. Conf. Semis
+                        - season: 1982
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: B. King (8.7)
+                          wins: 45
+                          playoffs: ''
+                        - season: 1956
+                          teamName: Philadelphia Warriors*
+                          teamAbbr: GSW
+                          topWs: N. Johnston (13.9)
+                          wins: 45
+                          playoffs: Won Finals
+                        - season: 2023
+                          teamName: Golden State Warriors*
+                          teamAbbr: GSW
+                          topWs: K. Looney (8.7)
+                          wins: 44
+                          playoffs: Lost W. Conf. Semis
+                        - season: 1991
+                          teamName: Golden State Warriors*
+                          teamAbbr: GSW
+                          topWs: C. Mullin (12.2)
+                          wins: 44
+                          playoffs: Lost W. Conf. Semis
+                        - season: 1974
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: R. Barry (10.4)
+                          wins: 44
+                          playoffs: ''
+                        - season: 1967
+                          teamName: San Francisco Warriors*
+                          teamAbbr: GSW
+                          topWs: R. Barry (14.4)
+                          wins: 44
+                          playoffs: Lost Finals
+                        - season: 1968
+                          teamName: San Francisco Warriors*
+                          teamAbbr: GSW
+                          topWs: R. LaRusso (8.6)
+                          wins: 43
+                          playoffs: Lost W. Div. Finals
+                        - season: 1978
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: R. Barry (9.7)
+                          wins: 43
+                          playoffs: ''
+                        - season: 1989
+                          teamName: Golden State Warriors*
+                          teamAbbr: GSW
+                          topWs: C. Mullin (10.6)
+                          wins: 43
+                          playoffs: Lost W. Conf. Semis
+                        - season: 1987
+                          teamName: Golden State Warriors*
+                          teamAbbr: GSW
+                          topWs: S. Floyd (10.0)
+                          wins: 42
+                          playoffs: Lost W. Conf. Semis
+                        - season: 2007
+                          teamName: Golden State Warriors*
+                          teamAbbr: GSW
+                          topWs: A. Biedriņš (6.7)
+                          wins: 42
+                          playoffs: Lost W. Conf. Semis
+                        - season: 1971
+                          teamName: San Francisco Warriors*
+                          teamAbbr: GSW
+                          topWs: J. Lucas (10.5)
+                          wins: 41
+                          playoffs: Lost W. Conf. Semis
+                        - season: 1969
+                          teamName: San Francisco Warriors*
+                          teamAbbr: GSW
+                          topWs: J. Mullins (10.0)
+                          wins: 41
+                          playoffs: Lost W. Div. Semis
+                        - season: 1951
+                          teamName: Philadelphia Warriors*
+                          teamAbbr: GSW
+                          topWs: P. Arizin (13.7)
+                          wins: 40
+                          playoffs: Lost E. Div. Semis
+                        - season: 1981
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: B. King (9.1)
+                          wins: 39
+                          playoffs: ''
+                        - season: 2021
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: S. Curry (9.0)
+                          wins: 39
+                          playoffs: ''
+                        - season: 2003
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: A. Jamison (8.5)
+                          wins: 38
+                          playoffs: ''
+                        - season: 1979
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: J. Lucas (7.9)
+                          wins: 38
+                          playoffs: ''
+                        - season: 1957
+                          teamName: Philadelphia Warriors*
+                          teamAbbr: GSW
+                          topWs: N. Johnston (13.7)
+                          wins: 37
+                          playoffs: Lost E. Div. Semis
+                        - season: 1990
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: C. Mullin (10.2)
+                          wins: 37
+                          playoffs: ''
+                        - season: 1958
+                          teamName: Philadelphia Warriors*
+                          teamAbbr: GSW
+                          topWs: N. Johnston (11.3)
+                          wins: 37
+                          playoffs: Lost E. Div. Finals
+                        - season: 1984
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: P. Short (6.0)
+                          wins: 37
+                          playoffs: ''
+                        - season: 2004
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: E. Dampier (8.9)
+                          wins: 37
+                          playoffs: ''
+                        - season: 2011
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: S. Curry (6.6)
+                          wins: 36
+                          playoffs: ''
+                        - season: 1996
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: B. Armstrong (7.0)
+                          wins: 36
+                          playoffs: ''
+                        - season: 1947
+                          teamName: Philadelphia Warriors*
+                          teamAbbr: GSW
+                          topWs: J. Fulks (16.3)
+                          wins: 35
+                          playoffs: Won Finals
+                        - season: 1966
+                          teamName: San Francisco Warriors
+                          teamAbbr: GSW
+                          topWs: R. Barry (10.4)
+                          wins: 35
+                          playoffs: ''
+                        - season: 1993
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: T. Hardaway (7.5)
+                          wins: 34
+                          playoffs: ''
+                        - season: 2005
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: J. Richardson (5.7)
+                          wins: 34
+                          playoffs: ''
+                        - season: 2006
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: J. Richardson (7.3)
+                          wins: 34
+                          playoffs: ''
+                        - season: 1952
+                          teamName: Philadelphia Warriors*
+                          teamAbbr: GSW
+                          topWs: P. Arizin (16.0)
+                          wins: 33
+                          playoffs: Lost E. Div. Semis
+                        - season: 1955
+                          teamName: Philadelphia Warriors
+                          teamAbbr: GSW
+                          topWs: N. Johnston (15.4)
+                          wins: 33
+                          playoffs: ''
+                        - season: 1959
+                          teamName: Philadelphia Warriors
+                          teamAbbr: GSW
+                          topWs: P. Arizin (13.0)
+                          wins: 32
+                          playoffs: ''
+                        - season: 1963
+                          teamName: San Francisco Warriors
+                          teamAbbr: GSW
+                          topWs: W. Chamberlain (20.9)
+                          wins: 31
+                          playoffs: ''
+                        - season: 1983
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: J. Carroll (7.0)
+                          wins: 30
+                          playoffs: ''
+                        - season: 1986
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: S. Floyd (7.5)
+                          wins: 30
+                          playoffs: ''
+                        - season: 1997
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: L. Sprewell (8.1)
+                          wins: 30
+                          playoffs: ''
+                        - season: 1970
+                          teamName: San Francisco Warriors
+                          teamAbbr: GSW
+                          topWs: J. Lucas (7.6)
+                          wins: 30
+                          playoffs: ''
+                        - season: 1954
+                          teamName: Philadelphia Warriors
+                          teamAbbr: GSW
+                          topWs: N. Johnston (18.3)
+                          wins: 29
+                          playoffs: ''
+                        - season: 2009
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: A. Biedriņš (5.4)
+                          wins: 29
+                          playoffs: ''
+                        - season: 1949
+                          teamName: Philadelphia Warriors*
+                          teamAbbr: GSW
+                          topWs: E. Sadowski (10.7)
+                          wins: 28
+                          playoffs: Lost E. Div. Semis
+                        - season: 1948
+                          teamName: Philadelphia Warriors*
+                          teamAbbr: GSW
+                          topWs: H. Dallmar (7.0)
+                          wins: 27
+                          playoffs: Lost Finals
+                        - season: 1950
+                          teamName: Philadelphia Warriors*
+                          teamAbbr: GSW
+                          topWs: L. Mogus (8.0)
+                          wins: 26
+                          playoffs: Lost E. Div. Semis
+                        - season: 2010
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: C. Maggette (6.3)
+                          wins: 26
+                          playoffs: ''
+                        - season: 1995
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: T. Hardaway (5.1)
+                          wins: 26
+                          playoffs: ''
+                        - season: 1980
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: S. Parker (6.8)
+                          wins: 24
+                          playoffs: ''
+                        - season: 2012
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: D. Lee (5.0)
+                          wins: 23
+                          playoffs: ''
+                        - season: 1985
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: P. Short (6.2)
+                          wins: 22
+                          playoffs: ''
+                        - season: 2002
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: A. Jamison (6.4)
+                          wins: 21
+                          playoffs: ''
+                        - season: 1999
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: D. Marshall (3.0)
+                          wins: 21
+                          playoffs: ''
+                        - season: 1988
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: R. Higgins (5.7)
+                          wins: 20
+                          playoffs: ''
+                        - season: 1998
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: D. Marshall (4.2)
+                          wins: 19
+                          playoffs: ''
+                        - season: 2000
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: D. Marshall (3.8)
+                          wins: 19
+                          playoffs: ''
+                        - season: 2001
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: A. Jamison (6.7)
+                          wins: 17
+                          playoffs: ''
+                        - season: 1965
+                          teamName: San Francisco Warriors
+                          teamAbbr: GSW
+                          topWs: W. Chamberlain (7.5)
+                          wins: 17
+                          playoffs: ''
+                        - season: 2020
+                          teamName: Golden State Warriors
+                          teamAbbr: GSW
+                          topWs: M. Chriss (3.4)
+                          wins: 15
+                          playoffs: ''
+                        - season: 1953
+                          teamName: Philadelphia Warriors
+                          teamAbbr: GSW
+                          topWs: N. Johnston (15.3)
+                          wins: 12
+                          playoffs: ''
