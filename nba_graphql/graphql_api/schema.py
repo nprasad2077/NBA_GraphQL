@@ -1,6 +1,6 @@
 import graphene
 from graphene_django.types import DjangoObjectType
-from .models import PlayerData, PlayerDataTotals, PlayerDataAdvanced, TeamData, PlayerDataTotalsPlayoffs, PlayerDataAdvancedPlayoffs
+from .models import PlayerData, PlayerDataTotals, PlayerDataAdvanced, TeamData, PlayerDataTotalsPlayoffs, PlayerDataAdvancedPlayoffs, ShotChartData
 
 
 class PlayerType(DjangoObjectType):
@@ -26,6 +26,10 @@ class PlayerTotalsPlayoffsType(DjangoObjectType):
 class PlayerAdvancedPlayoffsType(DjangoObjectType):
     class Meta:
         model = PlayerDataAdvancedPlayoffs
+        
+class ShotChartType(DjangoObjectType):
+    class Meta:
+        model = ShotChartData
 
 class Query(graphene.ObjectType):
     
@@ -105,6 +109,24 @@ class Query(graphene.ObjectType):
         first=graphene.Int(),
         limit=graphene.Int(),       
     )
+    
+    shot_chart_data = graphene.List(
+        ShotChartType,
+        name=graphene.String(),
+        date=graphene.String(),
+        quarter=graphene.String(),
+        time_remaining=graphene.String(),
+        shot_type=graphene.String(),
+        distance=graphene.Int(),
+        lead=graphene.Boolean(),
+        team=graphene.String(),
+        season=graphene.Int(),
+        player_id=graphene.String(),
+        ordering=graphene.String(),
+        first=graphene.Int(),
+        limit=graphene.Int()
+    )
+    
           
     def resolve_team(self, info, team_abbr=None, team_name=None, season=None, ordering=None, first=None, limit=None, **kwargs):
         t = TeamData.objects.all()
@@ -299,3 +321,44 @@ class Query(graphene.ObjectType):
             a = a[first:limit]
             
         return a
+    
+    def resolve_shot_chart_data(self, info, name=None, player_id=None, team=None, date=None, quarter=None, time_remaining=None, shot_type=None, distance=None, lead=None, season=None, ordering=None, first=None, limit=None, **kwargs):
+        s = ShotChartData.objects.all()
+        
+        if name:
+            s = s.filter(player_name__icontains=name)
+        
+        if player_id: 
+            s = s.filter(player_id=player_id)
+        
+        if team: 
+            s = s.filter(team=team)
+        
+        if date:
+            s = s.filter(date__icontains=date)
+        
+        if quarter:
+            s = s.filter(qtr__icontains=quarter)
+        
+        if shot_type:
+            s = s.filter(shot_type=shot_type)
+        
+        if distance:
+            s = s.filter(distance>=distance)
+        
+        if lead:
+            s = s.filter(lead=lead)
+            
+        if season:
+            s = s.filter(season=season)
+        
+        if ordering: 
+            s = s.order_by(ordering)
+        
+        if first:
+            s = s[first:limit]
+        
+        if limit:
+            s = s[first:limit]
+        
+        return s

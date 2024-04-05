@@ -24,7 +24,7 @@ except ValueError as e:
     print(f"Invalid input: {e}")
     exit(1)
 
-player_name = 'Stephen Curry'
+player_name = 'Nikola Jokić'
 
 # Function to get player ID
 def get_player_id(name):
