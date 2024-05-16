@@ -6,6 +6,8 @@
 
 ## Usage Examples
 
+[Guide on how to use this API.](/docs/intro.md)
+
 ### Querying Player Totals
 
 To query player totals for LeBron James, you can use the following GraphQL query:
