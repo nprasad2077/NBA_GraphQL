@@ -2,11 +2,11 @@
 
 ## Query the deployed API endpoint
 
+[Guide on how to use this API.](https://github.com/nprasad2077/NBA_GraphQL/wiki)
+
 [https://nbaapi.com/graphql/](https://nbaapi.com/graphql/)
 
 ## Usage Examples
-
-[Guide on how to use this API.](https://github.com/nprasad2077/NBA_GraphQL/wiki)
 
 ### Querying Player Totals
 
