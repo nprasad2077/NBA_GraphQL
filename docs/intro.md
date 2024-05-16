@@ -4,6 +4,7 @@
 
    - Open your web browser and go to [https://nbaapi.com/graphql/](https://nbaapi.com/graphql/).
    - This interface allows you to write and execute GraphQL queries against the NBA database.
+   - You can test queries and responses in the browser easily at the [GraphiQL interface]((https://nbaapi.com/graphql/))
 
 2. **Basic Query Structure**:
 
