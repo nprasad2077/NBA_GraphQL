@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'graphene_django',
     'corsheaders',
     'graphql_api.apps.GraphqlApiConfig',
+    'graphql_input.apps.GraphqlInputConfig',
 ]
 
 MIDDLEWARE = [
