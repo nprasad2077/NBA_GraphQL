@@ -3,6 +3,7 @@
 ## Access the API
 
 To interact with the NBA database, use the API endpoint provided below:
+
 - **Endpoint URL**: [http://209.38.172.107/graphql/](http://209.38.172.107/graphql/)
 
 This endpoint allows you to use the GraphiQL interface for testing and querying data.
