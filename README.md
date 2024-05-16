@@ -6,7 +6,7 @@
 
 ## Usage Examples
 
-[Guide on how to use this API.](/docs/intro.md)
+[Guide on how to use this API.](https://github.com/nprasad2077/NBA_GraphQL/wiki)
 
 ### Querying Player Totals
 
