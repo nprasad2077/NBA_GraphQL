@@ -28,21 +28,21 @@ class GenerateGraphQLQueryView(View):
 
         '''
         for stat in example_stats:
-            example_data += f"- Player: {stat.player_name}, Points: {stat.points}, Assists: {stat.assists}, Games: {stat.games}, Position: {stat.position}\n"
+            example_data += f"- Player: {stat.playerName}, Points: {stat.points}, Assists: {stat.assists}, Games: {stat.games}, Position: {stat.position}\n"
         '''
         # print(f"Example Data: {example_data}")  # Debug: Print example data
         
         # Define the GraphQL schema for the AI assistant
         graphql_schema = """
         type Query {
-            playerDataTotals(team: String, season: Int, ordering: String, limit: Int, name: String, id: Int, playerId: String): [PlayerDataTotals]
-            playerDataTotalsPlayoffs(team: String, season: Int, ordering: String, limit: Int, name: String, id: Int, playerId: String): [PlayerDataTotalsPlayoffs]
-            playerDataAdvanced(team: String, season: Int, ordering: String, limit: Int, name: String, id: Int, playerId: String): [PlayerDataAdvanced]
-            playerDataAdvancedPlayoffs(team: String, season: Int, ordering: String, limit: Int, name: String, id: Int, playerId: String): [PlayerDataAdvancedPlayoffs]
+            playerTotals(team: String, season: Int, ordering: String, limit: Int, name: String, id: Int, playerId: String): [PlayerTotals]
+            playerTotalsPlayoffs(team: String, season: Int, ordering: String, limit: Int, name: String, id: Int, playerId: String): [PlayerTotalsPlayoffs]
+            playerAdvanced(team: String, season: Int, ordering: String, limit: Int, name: String, id: Int, playerId: String): [PlayerAdvanced]
+            playerAdvancedPlayoffs(team: String, season: Int, ordering: String, limit: Int, name: String, id: Int, playerId: String): [PlayerAdvancedPlayoffs]
         }
 
-        type PlayerDataTotals {
-            player_name: String
+        type playerTotals {
+            playerName: String
             points: Int
             assists: Int
             games: Int
@@ -75,7 +75,7 @@ class GenerateGraphQLQueryView(View):
             gamesStarted: Int
         }
 
-        type PLayerDataAdvanced {
+        type playerAdvanced {
             id: Int
             playerId: String
             playerName: String
@@ -107,8 +107,8 @@ class GenerateGraphQLQueryView(View):
             age: Int
         }
         
-        type PlayerDataTotalsPlayoffs {
-            player_name: String
+        type playerTotalsPlayoffs {
+            playerName: String
             points: Int
             assists: Int
             games: Int
@@ -141,7 +141,7 @@ class GenerateGraphQLQueryView(View):
             gamesStarted: Int
         }
         
-        type PLayerDataAdvancedPlayoffs {
+        type playerAdvancedPlayoffs {
             id: Int
             playerId: String
             playerName: String
@@ -185,14 +185,14 @@ class GenerateGraphQLQueryView(View):
         GraphQL Schema:
         {graphql_schema}
 
-        Please generate a valid GraphQL query based on the user input. Ensure the 'ordering' variable is a single word with a '-' sign in front, indicating the field to order by in descending order.
+        Please generate a valid GraphQL query based on the user input. Ensure the 'ordering' variable is a single word with a '-' sign in front, indicating the field to order by in descending order. The ordering string must be in snake case even though the GraphQL query is in camel case.
         Always use NBA team abbreviations for the 'team' field. Convert all user input to NBA team names in query.
         If a field is not provided do not include it. Always return all fields unless specified otherwise in the user input.
 
         Example:
         query {{
-          playerDataTotals(team: "LAL", season: 2000, ordering: "-points", limit: 20) {{
-            player_name
+          playerTotals(team: "LAL", season: 2000, ordering: "-points", limit: 20) {{
+            playerName
             points
             assists
             games
