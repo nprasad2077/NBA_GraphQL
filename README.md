@@ -14,7 +14,7 @@ To query player totals for LeBron James, you can use the following GraphQL query
 
 ```graphQL
 query {
-  playerTotalsAll(name: "LeBron James") {
+  playerTotals(name: "LeBron James") {
     playerName
     position
     season
@@ -33,7 +33,7 @@ To query players by position and order them by total rebounds in descending orde
 
 ```graphQL
 query {
-  playerTotalsAll(position: "C", ordering: "-total_rb") {
+  playerTotals(position: "C", ordering: "-total_rb") {
     age
     assists
     blocks
@@ -76,7 +76,7 @@ To query advanced stats for players from the Houston Rockets in the 2019 season,
 
 ```graphQL
 query {
-  playerAdvancedAll(
+  playerAdvanced(
     team: "HOU"
     season: 2019
     position: "PG"
@@ -97,7 +97,7 @@ For detailed advanced stats for Kobe Bryant (returns all fields):
 
 ```graphQL
 query {
-  playerAdvancedAll(name: "Kobe Bryant") {
+  playerAdvanced(name: "Kobe Bryant") {
     id
     age
     assistPercent
@@ -137,8 +137,8 @@ The NBA_GraphQL API provides a rich set of endpoints to query player statistics,
 
 ### Endpoints
 
-- **playerTotalsAll**: Fetches aggregated player statistics.
-- **playerAdvancedAll**: Fetches advanced player statistics.
+- **playerTotals**: Fetches aggregated player statistics.
+- **playerAdvanced**: Fetches advanced player statistics.
 
 ### Filters and Ordering
 
