@@ -1,8 +1,6 @@
 from openai import OpenAI
 import os
 
-client = OpenAI(api_key=os.getenv('OPEN_AI_KEY'))
-
 from dotenv import load_dotenv
 from django.http import JsonResponse
 from django.views import View
@@ -12,9 +10,14 @@ from graphql_api.models import PlayerDataTotals, PlayerDataAdvanced
 # Load environment variables from .env file
 load_dotenv()
 
-# Set OpenAI API key
+# Set OpenAI client and API key
 
-class GenerateGraphQLQueryView(View):
+client = OpenAI(
+    base_url='http://localhost:11434/v1/',
+    api_key='ollama',               
+)
+
+class GenerateGraphQLQueryViewOllama(View):
     def post(self, request, *args, **kwargs):
         user_input = request.POST.get('user_input')
         print(f"User Input: {user_input}")  # Debug: Print user input
@@ -188,6 +191,7 @@ class GenerateGraphQLQueryView(View):
         Please generate a valid GraphQL query based on the user input. Ensure the 'ordering' variable is a single word with a '-' sign in front, indicating the field to order by in descending order. The ordering string must be in snake case even though the GraphQL query is in camel case.
         Always use NBA team abbreviations for the 'team' field. Convert all user input to NBA team names in query.
         If a field is not provided do not include it. Always return all fields unless specified otherwise in the user input.
+        ONLY return the query. Do not add any notes or comments.
 
         Example:
         query {{
@@ -232,14 +236,13 @@ class GenerateGraphQLQueryView(View):
         
         try:
             response = client.chat.completions.create(
-                model="gpt-4o",  # Updated to use the 'gpt-4' model
+                model="llama3",  # Updated to use the 'llama3' model
                 messages=[
                     {"role": "system", "content": "You are an assistant that helps generate GraphQL queries."},
                     {"role": "user", "content": prompt}
                 ],
-                max_tokens=1000,
-                n=1,
-                stop=["\n\n"],  # You can specify stop sequences to prevent the model from going off-topic
+                max_tokens=3500,
+                n=1, 
                 temperature=0.7
             )
            # print(f"OpenAI Response: {response}")  # Debug: Print the raw response

@@ -18,8 +18,12 @@ from django.contrib import admin
 from django.urls import path
 from graphene_django.views import GraphQLView
 from graphql_input.totals import GenerateGraphQLQueryView
+from graphql_input.ollama import GenerateGraphQLQueryViewOllama
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('graphql/', GraphQLView.as_view(graphiql=True)),
-    path('generate_query/', GenerateGraphQLQueryView.as_view(), name='generate_query')
+    path('generate_query/', GenerateGraphQLQueryView.as_view(), name='generate_query'),
+    path('generate_ollama/', GenerateGraphQLQueryViewOllama.as_view(), name='generate_ollama')
 ]
