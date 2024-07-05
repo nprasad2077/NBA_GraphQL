@@ -3,7 +3,7 @@ annotated-types==0.6.0
 anyio==3.7.1
 asgiref==3.7.2
 beautifulsoup4==4.12.3
-certifi==2023.11.17
+certifi==2024.7.4
 charset-normalizer==3.3.2
 distro==1.8.0
 Django==4.2.11
